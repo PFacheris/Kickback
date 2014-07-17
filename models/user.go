@@ -23,7 +23,7 @@ func (user User) Validate(errors binding.Errors, req *http.Request) binding.Erro
     if len(user.Email) < 3 {
         errors = append(errors, binding.Error{
             FieldNames:     []string{"email"},
-            Message:        "To short; minimum 3 characters",
+            Message:        "Too short; minimum 3 characters",
         })
     } else if len(user.Email) > 120 {
       errors = append(errors, binding.Error{
