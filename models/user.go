@@ -8,12 +8,14 @@ import (
 )
 
 type User struct {
-  Id           int64 `json:"id"`
-  Email        string `json:"email"  binding:"required" sql:"size:255;not null;unique"`
-  AuthToken    string `json:"authToken"  binding:"required" sql:"size:255;not null"`
-  CreatedAt    time.Time
-  UpdatedAt    time.Time
-  DeletedAt    time.Time
+  Id             int64     `json:"id"`
+  Email          string    `json:"email" binding:"required" sql:"size:255;not null;unique"`
+  AccessToken    string    `json:"-" binding:"required" sql:"size:255;not null"`
+  RefreshToken   string    `json:"-" binding:"required" sql:"size:255;not null"`
+  ExpireTokenAt  time.Time `json:"-"`
+  CreatedAt      time.Time
+  UpdatedAt      time.Time
+  DeletedAt      time.Time `json:"-"`
 }
 
 // This method implements binding.Validator and is executed by the binding.Validate middleware

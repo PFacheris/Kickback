@@ -1,4 +1,4 @@
-package userController
+package controllers
 
 import (
   // External Packages
@@ -14,7 +14,9 @@ import (
   . "github.com/pfacheris/kickback/db"
 )
 
-func Create(user User, errs binding.Errors, res http.ResponseWriter, params martini.Params) (int, []byte) {
+type UserController struct {}
+
+func (controller UserController) Create(user User, errs binding.Errors, res http.ResponseWriter, params martini.Params) (int, []byte) {
   var err error
 
   // Return JSON
@@ -24,7 +26,7 @@ func Create(user User, errs binding.Errors, res http.ResponseWriter, params mart
   if errs.Len() > 0 { return handleErrors(422, errs[0]) }
 
   // Attempt Save to DB and Handle Result
-  err = DB.Save(&user).Error
+  err = DB.Create(&user).Error
   if err != nil { return handleErrors(http.StatusConflict, err) }
 
   // Return Result
@@ -34,7 +36,7 @@ func Create(user User, errs binding.Errors, res http.ResponseWriter, params mart
 }
 
 
-func Read(res http.ResponseWriter, params martini.Params) (int, []byte) {
+func (controller UserController) Read(res http.ResponseWriter, params martini.Params) (int, []byte) {
   var err error
 
   // Return JSON
@@ -54,11 +56,11 @@ func Read(res http.ResponseWriter, params martini.Params) (int, []byte) {
   return http.StatusOK, json
 }
 
-func Update() {
+func (controller UserController) Update() {
 
 }
 
-func Destroy() {
+func (controller UserController) Destroy() {
 
 }
 
