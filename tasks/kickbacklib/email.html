@@ -1,0 +1,749 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <style type="text/css">
+body {
+	margin:0;
+	font:12px/16px Arial, sans-serif;	
+}
+
+a {
+	text-decoration:none;
+	color:#006699;
+	font:12px/16px Arial, sans-serif;	
+}
+
+a img {
+	border:0;
+}
+
+h2 {
+	font-size:20px;
+	line-height:24px;
+	margin:0;
+	padding:0;
+	font-weight:normal;	
+	color:#000 !important;
+}
+
+h3 {
+	font-size: 18px;
+	color:#cc6600;
+	margin:15px 0 0 0;
+	font-weight: normal
+}
+
+h4 {
+	font-size:14px;	
+	margin:0;
+	font-weight:normal;
+}
+
+p {
+	margin:1px 0 8px 0;
+	font:12px/16px Arial, sans-serif;	
+}
+
+table {
+	border-collapse:collapse;	
+}
+
+td {
+	vertical-align: top;
+	font-size: 13px;
+	line-height: 18px;
+	font-family: Arial, sans-serif
+}
+
+/* container */
+#container {
+	width:640px;
+	color:#333;
+	margin:0 auto;
+}
+
+#container .frame {
+	padding:0 20px 20px 20px;	
+}
+
+/* content tables */
+#main, #header, #customerSuggestions, #summary, #orderDetails, #itemDetails, #costBreakdown,
+#selfService, #closing, #marketingContent, #legalCopy {
+	width:100%;
+}
+
+/* main */
+#main .customerSuggestions {
+	background-color:#efefef;
+	padding:8px 20px 8px 20px;
+}
+
+#main .customerSuggestions a {
+	text-decoration:underline;
+	color:#006699;
+}
+
+#main .customerSuggestions span {
+	color:#cc6600;
+	font-weight:bold;
+}
+
+#main .customerSuggestionsCallOut {
+	padding: 0px 0px 0px 50px;
+}
+
+/* header */
+#header .logo {
+	width:115px;
+	padding:20px 20px 0 0;	
+}
+
+#header .navigation {
+	text-align:right;
+	padding:5px 0;
+	border-bottom:1px solid #ccc;
+	white-space:nowrap;
+}
+
+#header .navigation a {
+	border-right:0px solid #CCC;
+	margin-right:0px;
+	padding-right:0px;
+}
+
+#header .navigation span {
+ text-decoration:none; color:#CCC;
+ font-size:15px;
+ font-family:Arial, sans-serif; 
+}
+
+#header .navigation a.last {
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+#header .title {
+	text-align:right;
+	padding:7px 0 5px 0;
+}
+
+#header .title img {
+	padding:0 4px 0 0;
+}
+
+/* critical info */
+#criticalInfo {
+	border-top:3px solid #2d3741;
+	width: 95%; 
+}
+
+#criticalInfo td {
+	font-size:14px;
+	padding:11px 18px 18px 18px;
+	background-color:#efefef;
+	width:50%;
+}
+
+#criticalInfo .label {
+	color:#666;	
+}
+
+#criticalInfo p {
+	margin:2px 0 9px 0;
+	font:14px Arial, sans-serif;
+}
+
+#criticalInfo span {
+	font-size:14px;
+	color:#666;"
+}
+
+#criticalInfo a {
+	font-size:11px;
+	color:#666;
+	text-decoration:underline;	
+}
+
+#criticalInfo .footer {
+	background-color: rgb(256, 256, 256);
+        padding: 10px 0px 0px 0px;
+}
+
+#criticalInfo .footer p {
+    font: 11px/ 16px Arial, sans-serif;
+    color: rgb(51, 51, 51);
+}
+
+/* buttons */
+.button {
+	text-decoration:none !important;
+	display:block;
+	height:26px;
+	display:inline-block;
+	margin:0 0 2px 0;
+}
+
+.button.small {
+	height:20px;
+}
+
+.button .expandable {
+	float:left;
+	overflow:hidden;
+}
+
+.button .text {
+	color:#000f68;
+	font-size:12px;
+	position:relative;
+	z-index:10;
+	top:-22px;
+	left:-12px;	
+	text-align:center;
+}
+
+.button.secondary .text {
+	left:0;	
+}
+
+.button.small .text {
+	top:-20px;
+	left:0;
+	font-size:11px;
+}
+
+/* supporting details */
+#supportingDetails {
+	font-size:11px;
+	color:#666;
+	line-height:14px;
+	margin:10px 20px;
+}
+
+#supportingDetails {
+	margin:0 18px 0 18px;		
+}
+
+/* order details */
+#orderDetails h3 {
+	border-bottom:1px solid #ccc;
+	margin:0 0 3px 0;
+	padding:0 0 3px 0;
+}
+
+#orderDetails .frame {
+	padding:16px 20px 6px 20px;
+}
+
+#orderDetails .orderDate {
+	color:#666666;
+	font-size:12px;
+}
+
+#orderDetails span {
+	font-size:12px;
+	color:#666;"
+}
+
+#orderDetails p {
+	margin:2px 0 9px 0;	
+}
+
+/* item details */
+#itemDetails {
+	width: 95%;
+}
+
+#itemDetails .photo {
+	width:150px;
+	text-align:center;
+	padding:16px 0 10px 0;
+}
+
+#itemDetails .photo .play img {
+	margin:3px 0 0 0;	
+}
+
+#itemDetails .name {
+	color:#666;
+	padding:10px 0 10px 10px;
+}
+
+#itemDetails ul {
+	margin:0;
+	padding:0;
+}
+
+#itemDetails ul li {
+	list-style-type:none;
+	line-height:14px;
+	padding:0 0 4px 0;
+}
+
+#itemDetails ul li a {
+	font-size:14px;
+}
+
+#itemDetails .name p {
+	margin:0;
+	padding:10px 0 0 0;
+	font-size:12px;
+	line-height:16px;
+}
+
+#itemDetails .name p a {
+	font-size:11px;
+	text-decoration:underline;
+	color:#0000FF;
+}
+
+#itemDetails .name .share {
+	margin:3px 0 15px 0;	
+}
+
+#itemDetails .name .share a {
+	margin:4px 5px 0 0;
+	font-size:0;
+}
+
+#itemDetails .name .supportingDetails, 
+#itemDetails .name .supportingDetails a {
+	margin:8px 0 0 0;
+	font-size:12px;
+}
+
+#itemDetails .price {
+	width:110px;
+	text-align:right;
+	font-size:14px;
+	padding:10px 10px 0 0;	
+}
+
+#itemDetails .price a {
+	text-decoration:underline;
+}
+
+#itemDetails .divider {
+	border-top:1px solid #eaeaea;
+	padding:0 0 16px 0;
+}
+
+#itemDetails .name table {
+        border-collapse: separate;
+}
+
+#shippingWeight {
+	width:95%;
+}
+
+#shippingWeight td {
+	text-align:right;
+	line-height:18px;
+	padding:0 10px 0 0; 
+}
+
+#shippingWeight .divider {
+	border-top:1px solid #eaeaea;
+	padding:0 0 16px 0;
+}
+
+#shippingWeight .shipmentWeightValue {
+	width:120px;
+}
+
+/* cost breakdown */
+#costBreakdow {
+	width:95%;
+}
+
+#costBreakdown td {
+	text-align:right;
+	line-height:18px;
+	padding:0 10px 0 0;	
+}
+
+#costBreakdown .divider {
+	border-top:1px solid #eaeaea;
+	padding:0 0 16px 0;
+}
+
+#costBreakdown .end {
+	padding:0 0 16px 0;
+}
+
+#costBreakdown .price {
+	width:120px;
+}
+
+#costBreakdown .total {
+	font-size:14px;
+	font-weight:bold;
+	font: 12px/ 16px Arial, sans-serif;
+}
+
+/* additional shipments */
+#additionalShipments {
+	font-size:11px;
+}
+
+#additionalShipments h3 {
+	margin:10px 0 0 0;	
+}
+
+#additionalShipments p {
+	margin:10px 20px 0px 20px;
+}
+
+#additionalShipments .orderDate {
+	color:#666666;
+	font-size:12px;
+}
+
+#additionalShipments .details {
+	padding:10px 20px 10px 20px;
+}
+
+#additionalShipments .details .label {
+	color:#666666;
+	font-weight:bold;	
+}
+
+#additionalShipments .details .edd, #additionalShipments .details .quantity {
+	font-weight:bold;	
+}
+
+/* self service */
+#selfService .divider {
+	border-top:1px solid #ccc;
+	padding:0 0 16px 0;
+}
+
+/* closing */
+#closing {
+	padding:0 0 0 0;
+	border-collapse:none;
+}
+
+#closing p {
+	padding:0 0 20px 0;
+	border-bottom:1px solid #eaeaea;
+	margin:0;	
+}
+
+#closing .signature {
+	font-size:16px;
+	font-weight:bold;
+}
+
+/* marketing content */
+#marketingContent {
+	border-bottom:1px solid #ccc;
+	border-collapse:none;
+	padding:15px 0 15px 0;	
+}
+
+#marketingContent td {
+}
+
+#marketingContent td.right {
+}
+
+
+/* legal copy */
+#legalCopy {
+	margin:20px 0 0 0;
+}
+
+#legalCopy p {
+	font-size:10px;
+	color:#666;
+	line-height:16px;
+	margin:0 0 10px 0;	
+	font:10px;
+}
+
+#legalCopy a {
+	font-size:10px;
+	font:10px;
+}
+
+/* reg fee */
+#regFee td {
+	colspan: 2;
+	border-top:1px solid #ccc;
+}
+
+
+  </style> 
+  <title>
+				Amazon.com order of BladesUSA 1806Bk Samurai... and 2 more item(s).
+	</title> 
+ </head> 
+ <body style="margin: 0; font: 12px/ 16px Arial, sans-serif"> 
+  <table id="container" style="width: 640px; color: rgb(51, 51, 51); margin: 0 auto; border-collapse: collapse"> 
+   <tbody>
+    <tr> 
+     <td class="frame" style="padding: 0 20px 20px 20px; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+      <table id="main" style="width: 100%; border-collapse: collapse"> 
+       <tbody>
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table id="header" style="width: 100%; border-collapse: collapse"> 
+           <tbody>
+            <tr> 
+             <td rowspan="2" class="logo" style="width: 115px; padding: 20px 20px 0 0; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=VALZQA2RJDJK2L4SWAL46EDARD8A&T=C&U=https%3A%2F%2Fwww.amazon.com%3Fref_%3Dpe_385040_30332200" title="Visit www.amazon.com" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img alt="Amazon.com" src="http://g-ecx.images-amazon.com/images/G/01/x-locale/cs/te/logo.png" style="border: 0; width: 115px" /> </a> </td> 
+             <td class="navigation" style="text-align: right; padding: 5px 0; border-bottom: 1px solid rgb(204, 204, 204); white-space: nowrap; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> </td>
+             <td style="width: 100%; text-align: right; padding: 5px 0; border-bottom: 1px solid rgb(204, 204, 204); white-space: nowrap; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif" class="navigation"> 
+              <div class="unified_widget rcmBody">
+               <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=5VWZU21OUHLMRQGIJ8EMWAUIDP0A&T=C&U=https%3A%2F%2Fwww.amazon.com%3A443%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_amb_link_372064882_1%2F185-4498304-4338615%3Fie%3DUTF8%26location%3Dhttps%253A%252F%252Fwww.amazon.com%252Fgp%252Fyourstore%252Fhome%253Fie%253DUTF8%2526ref%253Dswm001%26token%3D661ABEA050EC7ED103349320C53489637F654274%26pf_rd_m%3DATVPDKIKX0DER%26pf_rd_s%3Demail-center-1%26pf_rd_r%3D0AW37328EVHB65148RQG%26pf_rd_t%3D401%26pf_rd_p%3D1633342562%26pf_rd_i%3Dcontentsymphonyslot" style="border-right: 0px solid rgb(204, 204, 204); margin-right: 0px; padding-right: 0px; text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">Your Recommendations</a>
+               <div class="h_rule"></div>
+              </div> </td> 
+             <td class="navigation" style="text-align: right; padding: 5px 0; border-bottom: 1px solid rgb(204, 204, 204); white-space: nowrap; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <span style="text-decoration: none; color: rgb(204, 204, 204); font-size: 15px; font-family: Arial, sans-serif">&nbsp;|&nbsp;</span> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=KDE37XMY3YJCJHEBQ46SFKREEMUA&T=C&U=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Fyour-account-access%2Fref%3Dpe_385040_30332200_TE_ya" style="border-right: 0px solid rgb(204, 204, 204); margin-right: 0px; padding-right: 0px; text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">Your Account</a> <span style="text-decoration: none; color: rgb(204, 204, 204); font-size: 15px; font-family: Arial, sans-serif">&nbsp;|&nbsp;</span> <a class="last" href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=LLVELSGLMOHBQMX2BHG4AVAF6YUA&T=C&U=https%3A%2F%2Fwww.amazon.com%2Fref%3Dpe_385040_30332200_TE_cn" style="border: 0; margin: 0; padding: 0; border-right: 0px solid rgb(204, 204, 204); margin-right: 0px; padding-right: 0px; text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">Amazon.com</a> </td>  
+            </tr> 
+            <tr> 
+             <td colspan="3" class="title" style="text-align: right; padding: 7px 0 5px 0; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <h2 style="font-size: 20px; line-height: 24px; margin: 0; padding: 0; font-weight: normal; color: rgb(0, 0, 0) !important">Order Confirmation</h2> Order #<a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=9GOPINIOXHUXHJVXCEO0PGNVUAOA&T=C&U=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-details%3ForderId%3D114-1969698-0178613%26ref%3DTE_on%26ref_%3Dpe_385040_30332200" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">114-1969698-0178613</a> <br /> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table id="summary" style="width: 100%; border-collapse: collapse"> 
+           <tbody>
+            <tr> 
+             <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <h3 style="font-size: 18px; color: rgb(204, 102, 0); margin: 15px 0 0 0; font-weight: normal">Hello Matthew Condon,</h3> <p style="margin: 1px 0 8px 0; font: 12px/ 16px Arial, sans-serif"> Thank you for shopping with us. We’ll send a confirmation once your item has shipped. Your order details are indicated below. The payment details of your transaction can be found on the <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=V1FIW5BUZRGENGMR5YLAS2ENS7EA&T=C&U=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Fsummary%2Fprint.html%2Fref%3Dpe_385040_30332200_TE_oi%3Fie%3DUTF8%26orderID%3D114-1969698-0178613" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">order invoice</a>. If you would like to view the status of your order or make any changes to it, please visit <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=WY1VB4I0QNGUZC5OFVEVDJLOFUOA&T=C&U=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Fyour-orders-access%2Fref%3Dpe_385040_30332200_TE_gs" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">Your Orders</a> on Amazon.com. </p> </td> 
+            </tr>
+            <tr> 
+             <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table style="border-collapse: collapse"> 
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table style="width: 100%; border-top: 3px solid rgb(45, 55, 65); border-collapse: collapse" id="criticalInfo"> 
+           <tbody>
+            <tr> 
+             <td style="font-size: 14px; padding: 11px 18px 18px 18px; background-color: rgb(239, 239, 239); width: 50%; vertical-align: top; line-height: 18px; font-family: Arial, sans-serif"> <p style="margin: 2px 0 9px 0; font: 14px Arial, sans-serif"> <span style="font-size: 14px; color: rgb(102, 102, 102)">Your estimated delivery date is:</span> <br /> <b> Tuesday, July 15, 2014 - <br /> Thursday, July 17, 2014 </b> </p> <p style="margin: 2px 0 9px 0; font: 14px Arial, sans-serif"> <span style="font-size: 14px; color: rgb(102, 102, 102)">Your shipping speed:</span> <br /> <b> Standard Shipping </b> </p> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=JSCIYL6BDOYABQNWZQGNYJWZVGSA&T=C&U=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-details%3ForderId%3D114-1969698-0178613%26ref_%3Dpe_385040_30332200_TE_on_sh" style="font-size: 11px; color: rgb(102, 102, 102); text-decoration: underline; font: 12px/ 16px Arial, sans-serif"> <img alt="Your Orders" border="0" id="yourOrders" src="http://g-ecx.images-amazon.com/images/G/01/x-locale/cs/te/button-orderdetails.png" style="border: 0" /> </a> </td> 
+             <td style="font-size: 14px; padding: 11px 18px 18px 18px; background-color: rgb(239, 239, 239); width: 50%; vertical-align: top; line-height: 18px; font-family: Arial, sans-serif"> <p style="margin: 2px 0 9px 0; font: 14px Arial, sans-serif"> <span style="font-size: 14px; color: rgb(102, 102, 102)">Your order will be sent to:</span> <br /> <b> Matt Condon <br /> LA TECH <br /> PO Box #05817 <br /> RUSTON, LA 71272 <br /> United States </b> </p> </td> 
+            </tr> 
+            <tr> 
+             <td colspan="2" class="footer" style="background-color: rgb(256, 256, 256); padding: 10px 0px 0px 0px; font-size: 14px; width: 50%; vertical-align: top; line-height: 18px; font-family: Arial, sans-serif"> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <div style="margin:15px 0 0 0 ;"> 
+           <div style="display:none;"></div>
+           <table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+            <tbody>
+             <tr>
+              <td align="center" style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"><map name="CBCC_OCE_60"><area shape="rect" coords="0,0,600,37" alt="Get $60 instantly when you get the Amazon.com Rewards Visa Card" href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=VNP56IMQFLQPI3EJYRDPFK75JNAA&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_scc001%2F179-2322419-9302336%3Fie%3DUTF8%26location%3Dhttp%253A%252F%252Fwww.amazon.com%252Fgp%252Fcobrandcard%252Fmarketing.html%253Fie%253DUTF8%2526place%253Dcamp%2526plattr%253DCBROCES60%2526pr%253Dcon321%26token%3D3A0F170E7CEFE27BDC730D3D7344512BC1296B83%26pf_rd_m%3DATVPDKIKX0DER%26pf_rd_s%3Demail-center-1%26pf_rd_r%3D0ADKRM1DP1Q63YWSKN0D%26pf_rd_t%3D401%26pf_rd_p%3D1769638882%26pf_rd_i%3Dcontentsymphonyslot"></area> </map><img src="https://images-na.ssl-images-amazon.com/images/G/01/credit/img13/CBCC/Email/cbcc-get60inst_email._V339973274_.png" width="600" align="center" usemap="#CBCC_OCE_60" alt="Get $60 instantly when you get the Amazon.com Rewards Visa Card" height="37" border="0" /></td>
+             </tr>
+            </tbody>
+           </table> 
+          </div> </td> 
+        </tr> 
+        <tr> 
+         <td style="border-bottom: 1px solid rgb(204, 204, 204); vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <h3 style="font-size: 18px; color: rgb(204, 102, 0); margin: 15px 0 0 0; font-weight: normal">Order Details</h3> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table id="orderDetails" style="width: 100%; border-collapse: collapse"> 
+           <tbody>
+            <tr> 
+             <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> Order #<a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=9GOPINIOXHUXHJVXCEO0PGNVUAOA&T=C&U=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-details%3ForderId%3D114-1969698-0178613%26ref%3DTE_on%26ref_%3Dpe_385040_30332200" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">114-1969698-0178613</a> <br /> <span style="font-size: 12px; color: rgb(102, 102, 102)">Placed on Wednesday, July 9, 2014</span> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="padding-left: 32px; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table style="width: 95%; border-collapse: collapse" id="itemDetails"> 
+           <tbody>
+            <tr> 
+             <td class="photo" style="width: 150px; text-align: center; padding: 16px 0 10px 0; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=LYA7SAXZH7KQTDMFQNFW1IHNEMUA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fdp%2FB00EP95TYO%2Fref%3Dpe_385040_30332200_TE_item_image" title="B00EP95TYO" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img id="asin" src="http://ecx.images-amazon.com/images/I/518kdg2JrsL._SCLZZZZZZZ__SY115_SX115_.jpg" style="border: 0" /> </a> </td> 
+             <td class="name" style="color: rgb(102, 102, 102); padding: 10px 0 10px 10px; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=AZDN3LEYAS1CLC09HY8N7MFH61YA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fdp%2FB00EP95TYO%2Fref%3Dpe_385040_30332200_TE_item" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> 1pc Replacement End Cap Cover for Jawbone UP 2 2nd Gen 2.0 Bracelet Band Cap Dust Protector (not for the 1st Gen) </a> <br /> Wireless Phone Accessory <br /> Sold by <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=O5LOCJTFAFNAAKLBA7GTPPIFKNEA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fhelp%2Fseller%2Fhome.html%2Fref%3Dpe_385040_30332200_TE_seller%3Fie%3DUTF8%26seller%3DARA27G82YKBWU" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">BCS inc.</a> <br /> Condition: New <br /> 
+              <div style="vertical-align: top; align=center;"> 
+               <table border="0" cellspacing="4" cellpadding="0" style="border-collapse: separate"> 
+                <tbody style="vertical-align: bottom;"> 
+                 <tr> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> </td> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=MZJDBX5KAQ7WFAGM60BENGNVAZIA&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_cm_sw_cl_fa_doce%2F176-1307133-5650738%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Fwww.facebook.com%252Fdialog%252Ffeed%253Fapp_id%253D164734381262%2526caption%253D%2526display%253Dpopup%2526link%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB00EP95TYO%25252Fref%25253Dcm_sw_r_fa_doce%2526name%253D%2526picture%253Dhttp%25253A%25252F%25252Fecx.images-amazon.com%25252Fimages%25252FI%25252F518kdg2JrsL._SCLZZZZZZZ__SY115_SX115_.jpg%2526redirect_uri%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB00EP95TYO%25252Fref%25253Dcm_sw_r_fa_doce%26token%3D6BD0FB927CC51E76FF446584B1040F70EA7E88E1" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img src="http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/live-meter/facebook._V199133872_.gif" width="16" alt="Facebook" style="vertical-align: middle; border: 0" height="16" border="0" /> </a> </td> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=PBTJHOWCBLCHTKXWGJVSGTODV6YA&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_cm_sw_cl_tw_doce%2F176-1307133-5650738%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Ftwitter.com%252Fshare%253Fcount%253Dnone%2526original_referer%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB00EP95TYO%25252Fref%25253Dcm_sw_r_tw_doce%2526related%253Damazon%25252Camazondeals%25252Camazonmp3%2526text%253D1pc%252520Replacement%252520End%252520Cap%252520Cover%252520for%252520Jawbone%252520UP%2525202%2525202nd%252520Gen%2525202.0%252520Bracelet%252520Band%252520Cap%252520Dust%252520Protector%252520%28not%252520for%252520the%2525201st%252520Gen%29%252520by%252520Amazon%2526twitterURL%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB00EP95TYO%25252Fref%25253Dcm_sw_r_tw_doce%2526via%253Damazon%26token%3D7A1A4AE8F6CE0BD277D8295E58702D283F329C0F" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img src="http://g-ecx.images-amazon.com/images/G/01/x-locale/communities/social/twitter._V388046070_.gif" width="16" alt="Twitter" style="vertical-align: middle; border: 0" height="16" border="0" /> </a> </td> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=JPMUEAOD7OAWO1P81IAN4YSAPU8A&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_cm_sw_cl_pi_doce%2F176-1307133-5650738%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Fpinterest.com%252Fpin%252Fcreate%252Fbutton%252F%253Fdescription%253D1pc%252520Replacement%252520End%252520Cap%252520Cover%252520for%252520Jawbone%252520UP%2525202%2525202nd%252520Gen%2525202.0%252520Bracelet%252520Band%252520Cap%252520Dust%252520Protector%252520%28not%252520for%252520the%2525201st%252520Gen%29%252520by%252520Amazon%25252C%252520http%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB00EP95TYO%25252Fref%25253Dcm_sw_r_pi_doce%2526is_video%253Dfalse%2526media%253Dhttp%25253A%25252F%25252Fecx.images-amazon.com%25252Fimages%25252FI%25252F518kdg2JrsL._SCLZZZZZZZ__SY115_SX115_.jpg%2526title%253D%2526url%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB00EP95TYO%25252Fref%25253Dcm_sw_r_pi_doce%26token%3D9F58B366258E1A8B5259E9BEF3482E02341F42D3" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img src="http://g-ecx.images-amazon.com/images/G/01/x-locale/communities/social/pinterest._V149279734_.png" width="16" alt="Pinterest" style="vertical-align: middle; border: 0" height="16" border="0" /> </a> </td> 
+                 </tr> 
+                </tbody> 
+               </table> 
+              </div> </td> 
+             <td class="price" style="width: 110px; text-align: right; font-size: 14px; padding: 10px 10px 0 0; vertical-align: top; line-height: 18px; font-family: Arial, sans-serif"> <strong>$6.79</strong> <br /> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="padding-left: 32px; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table style="width: 95%; border-collapse: collapse" id="itemDetails"> 
+           <tbody>
+            <tr> 
+             <td class="photo" style="width: 150px; text-align: center; padding: 16px 0 10px 0; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=SWFCOIGF1UABPVGILLFYNGD2NJUA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fdp%2FB000G2OZ30%2Fref%3Dpe_385040_30332200_TE_item_image" title="B000G2OZ30" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img id="asin" src="http://ecx.images-amazon.com/images/I/41R9CW5q8YL._SCLZZZZZZZ__SY115_SX115_.jpg" style="border: 0" /> </a> </td> 
+             <td class="name" style="color: rgb(102, 102, 102); padding: 10px 0 10px 10px; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=VWNBGM3HRGKBY31AFZMBYTQYBJQA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fdp%2FB000G2OZ30%2Fref%3Dpe_385040_30332200_TE_item" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> Japanese WW2 Battle Flag 3 x 5 NEW 3x5 WWII Rising Sun </a> <br /> Sold by <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=SGAYFSLV9ZKKM1HQTHF346OGHHEA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fhelp%2Fseller%2Fhome.html%2Fref%3Dpe_385040_30332200_TE_seller%3Fie%3DUTF8%26seller%3DA3RAVQD3YCB8QG" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">BC Novelties</a> <br /> Condition: New <br /> 
+              <div style="vertical-align: top; align=center;"> 
+               <table border="0" cellspacing="4" cellpadding="0" style="border-collapse: separate"> 
+                <tbody style="vertical-align: bottom;"> 
+                 <tr> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> </td> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=UA5N8RBWF7KHPKXV9MY5YFYD18QA&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_cm_sw_cl_fa_doce%2F175-6967796-6136267%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Fwww.facebook.com%252Fdialog%252Ffeed%253Fapp_id%253D164734381262%2526caption%253D%2526display%253Dpopup%2526link%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000G2OZ30%25252Fref%25253Dcm_sw_r_fa_doce%2526name%253D%2526picture%253Dhttp%25253A%25252F%25252Fecx.images-amazon.com%25252Fimages%25252FI%25252F41R9CW5q8YL._SCLZZZZZZZ__SY115_SX115_.jpg%2526redirect_uri%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000G2OZ30%25252Fref%25253Dcm_sw_r_fa_doce%26token%3D6BD0FB927CC51E76FF446584B1040F70EA7E88E1" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img src="http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/live-meter/facebook._V199133872_.gif" width="16" alt="Facebook" style="vertical-align: middle; border: 0" height="16" border="0" /> </a> </td> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=AJZBH52B7LZ9YZPEXKZOAWEC8COA&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_cm_sw_cl_tw_doce%2F175-6967796-6136267%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Ftwitter.com%252Fshare%253Fcount%253Dnone%2526original_referer%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000G2OZ30%25252Fref%25253Dcm_sw_r_tw_doce%2526related%253Damazon%25252Camazondeals%25252Camazonmp3%2526text%253DJapanese%252520WW2%252520Battle%252520Flag%2525203%252520x%2525205%252520NEW%2525203x5%252520WWII%252520Rising%252520Sun%252520by%252520Amazon%2526twitterURL%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000G2OZ30%25252Fref%25253Dcm_sw_r_tw_doce%2526via%253Damazon%26token%3D7A1A4AE8F6CE0BD277D8295E58702D283F329C0F" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img src="http://g-ecx.images-amazon.com/images/G/01/x-locale/communities/social/twitter._V388046070_.gif" width="16" alt="Twitter" style="vertical-align: middle; border: 0" height="16" border="0" /> </a> </td> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=XB0MOOXZJBEPWUWB1Z1WCLABLX8A&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_cm_sw_cl_pi_doce%2F175-6967796-6136267%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Fpinterest.com%252Fpin%252Fcreate%252Fbutton%252F%253Fdescription%253DJapanese%252520WW2%252520Battle%252520Flag%2525203%252520x%2525205%252520NEW%2525203x5%252520WWII%252520Rising%252520Sun%252520by%252520Amazon%25252C%252520http%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000G2OZ30%25252Fref%25253Dcm_sw_r_pi_doce%2526is_video%253Dfalse%2526media%253Dhttp%25253A%25252F%25252Fecx.images-amazon.com%25252Fimages%25252FI%25252F41R9CW5q8YL._SCLZZZZZZZ__SY115_SX115_.jpg%2526title%253D%2526url%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000G2OZ30%25252Fref%25253Dcm_sw_r_pi_doce%26token%3D9F58B366258E1A8B5259E9BEF3482E02341F42D3" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img src="http://g-ecx.images-amazon.com/images/G/01/x-locale/communities/social/pinterest._V149279734_.png" width="16" alt="Pinterest" style="vertical-align: middle; border: 0" height="16" border="0" /> </a> </td> 
+                 </tr> 
+                </tbody> 
+               </table> 
+              </div> </td> 
+             <td class="price" style="width: 110px; text-align: right; font-size: 14px; padding: 10px 10px 0 0; vertical-align: top; line-height: 18px; font-family: Arial, sans-serif"> <strong>$6.25</strong> <br /> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="padding-left: 32px; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table style="width: 95%; border-collapse: collapse" id="itemDetails"> 
+           <tbody>
+            <tr> 
+             <td class="photo" style="width: 150px; text-align: center; padding: 16px 0 10px 0; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=ALAJIRCRKANYBCTAKN4J5DGFAJIA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fdp%2FB000EVPJXI%2Fref%3Dpe_385040_30332200_TE_item_image" title="B000EVPJXI" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img id="asin" src="http://ecx.images-amazon.com/images/I/41UrmlIdj+L._SCLZZZZZZZ__SY115_SX115_.jpg" style="border: 0" /> </a> </td> 
+             <td class="name" style="color: rgb(102, 102, 102); padding: 10px 0 10px 10px; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=IGGAJYARD0OIVGX8PFTUUS1IPTUA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fdp%2FB000EVPJXI%2Fref%3Dpe_385040_30332200_TE_item" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> BladesUSA 1806Bk Samurai Wooden Training Bokken Black 39-Inch Overall </a> <br /> Sports <br /> Sold by Amazon.com LLC <br /> 
+              <div style="vertical-align: top; align=center;"> 
+               <table border="0" cellspacing="4" cellpadding="0" style="border-collapse: separate"> 
+                <tbody style="vertical-align: bottom;"> 
+                 <tr> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> </td> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=7GZATG42RIRN9CFV0I6LFO1C1OUA&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_cm_sw_cl_fa_doce%2F191-5015326-1465529%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Fwww.facebook.com%252Fdialog%252Ffeed%253Fapp_id%253D164734381262%2526caption%253D%2526display%253Dpopup%2526link%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000EVPJXI%25252Fref%25253Dcm_sw_r_fa_doce%2526name%253D%2526picture%253Dhttp%25253A%25252F%25252Fecx.images-amazon.com%25252Fimages%25252FI%25252F41UrmlIdj%252520L._SCLZZZZZZZ__SY115_SX115_.jpg%2526redirect_uri%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000EVPJXI%25252Fref%25253Dcm_sw_r_fa_doce%26token%3D6BD0FB927CC51E76FF446584B1040F70EA7E88E1" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img src="http://g-ecx.images-amazon.com/images/G/01/x-locale/personalization/live-meter/facebook._V199133872_.gif" width="16" alt="Facebook" style="vertical-align: middle; border: 0" height="16" border="0" /> </a> </td> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=VYN7SUD1WVDFDUINE0KWBHY2JGSA&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_cm_sw_cl_tw_doce%2F191-5015326-1465529%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Ftwitter.com%252Fshare%253Fcount%253Dnone%2526original_referer%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000EVPJXI%25252Fref%25253Dcm_sw_r_tw_doce%2526related%253Damazon%25252Camazondeals%25252Camazonmp3%2526text%253DBladesUSA%2525201806Bk%252520Samurai%252520Wooden%252520Training%252520Bokken%252520Black%25252039-Inch%252520Overall%252520by%252520Amazon%2526twitterURL%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000EVPJXI%25252Fref%25253Dcm_sw_r_tw_doce%2526via%253Damazon%26token%3D7A1A4AE8F6CE0BD277D8295E58702D283F329C0F" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img src="http://g-ecx.images-amazon.com/images/G/01/x-locale/communities/social/twitter._V388046070_.gif" width="16" alt="Twitter" style="vertical-align: middle; border: 0" height="16" border="0" /> </a> </td> 
+                  <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=4K1RNGXOYFACFSPPFZF7PRLHAK8A&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_cm_sw_cl_pi_doce%2F191-5015326-1465529%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Fpinterest.com%252Fpin%252Fcreate%252Fbutton%252F%253Fdescription%253DBladesUSA%2525201806Bk%252520Samurai%252520Wooden%252520Training%252520Bokken%252520Black%25252039-Inch%252520Overall%252520by%252520Amazon%25252C%252520http%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000EVPJXI%25252Fref%25253Dcm_sw_r_pi_doce%2526is_video%253Dfalse%2526media%253Dhttp%25253A%25252F%25252Fecx.images-amazon.com%25252Fimages%25252FI%25252F41UrmlIdj%252520L._SCLZZZZZZZ__SY115_SX115_.jpg%2526title%253D%2526url%253Dhttp%25253A%25252F%25252Fwww.amazon.com%25252Fdp%25252FB000EVPJXI%25252Fref%25253Dcm_sw_r_pi_doce%26token%3D9F58B366258E1A8B5259E9BEF3482E02341F42D3" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif"> <img src="http://g-ecx.images-amazon.com/images/G/01/x-locale/communities/social/pinterest._V149279734_.png" width="16" alt="Pinterest" style="vertical-align: middle; border: 0" height="16" border="0" /> </a> </td> 
+                 </tr> 
+                </tbody> 
+               </table> 
+              </div> </td> 
+             <td class="price" style="width: 110px; text-align: right; font-size: 14px; padding: 10px 10px 0 0; vertical-align: top; line-height: 18px; font-family: Arial, sans-serif"> <strong>$12.67</strong> <br /> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="padding-left: 32px; vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table style="width: 95%; border-collapse: collapse" id="costBreakdown"> 
+           <tbody>
+            <tr> 
+             <td colspan="2" class="divider" style="border-top: 1px solid rgb(234, 234, 234); padding: 0 0 16px 0; text-align: right; line-height: 18px; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> </td> 
+            </tr> 
+            <tr> 
+             <td style="text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> Item Subtotal: </td> 
+             <td class="price" style="width: 120px; text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> $25.71 </td> 
+            </tr> 
+            <tr> 
+             <td style="text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> Shipping &amp; Handling: </td> 
+             <td class="price" style="width: 120px; text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> $11.39 </td> 
+            </tr> 
+            <tr> 
+             <td colspan="2" style="text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> <p style="margin: 1px 0 8px 0; font: 12px/ 16px Arial, sans-serif"></p> </td> 
+            </tr> 
+            <tr> 
+             <td style="text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> Total Before Tax: </td> 
+             <td class="price" style="width: 120px; text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> $37.10 </td> 
+            </tr> 
+            <tr> 
+             <td colspan="2" style="text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> <p style="margin: 1px 0 8px 0; font: 12px/ 16px Arial, sans-serif"></p> </td> 
+            </tr> 
+            <tr> 
+             <td colspan="2" style="text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> <p style="margin: 1px 0 8px 0; font: 12px/ 16px Arial, sans-serif"></p> </td> 
+            </tr> 
+            <tr> 
+             <td class="total" style="font-size: 14px; font-weight: bold; font: 12px/ 16px Arial, sans-serif; text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-family: Arial, sans-serif"> <strong>Order Total:</strong> </td> 
+             <td class="total" style="font-size: 14px; font-weight: bold; font: 12px/ 16px Arial, sans-serif; text-align: right; line-height: 18px; padding: 0 10px 0 0; vertical-align: top; font-family: Arial, sans-serif"> <strong>$37.10</strong> </td> 
+            </tr> 
+            <tr> 
+             <td colspan="2" class="end" style="padding: 0 0 16px 0; text-align: right; line-height: 18px; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> </td> 
+            </tr> 
+            <tr> 
+             <td colspan="2" class="divider" style="border-top: 1px solid rgb(234, 234, 234); padding: 0 0 16px 0; text-align: right; line-height: 18px; vertical-align: top; font-size: 13px; font-family: Arial, sans-serif"> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table id="selfService" style="width: 100%; border-collapse: collapse"> 
+           <tbody>
+            <tr> 
+             <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <p style="margin: 1px 0 8px 0; font: 12px/ 16px Arial, sans-serif"> To learn more about ordering, go to <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=HLX07ANRQN3ZW8ZBUBP0LAQUFUGA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fhelp%2Fcustomer%2Fdisplay.html%2Fref%3Dpe_385040_30332200_TE_ofa%3Fie%3DUTF8%26nodeId%3D468466" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">Ordering from Amazon.com</a>.<br /> If you want more information or need more assistance, go to <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=QUJRGI8SSAAAAMPUPRBL5BRFKRUA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fhelp%2Fcustomer%2Fdisplay.html%2Fref%3Dpe_385040_30332200_TE_ss%3Fie%3DUTF8%26nodeId%3D508510" style="text-decoration: none; color: rgb(0, 102, 153); font: 12px/ 16px Arial, sans-serif">Help</a>. </p> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table id="closing" style="width: 100%; padding: 0 0 0 0; border-collapse: none"> 
+           <tbody>
+            <tr> 
+             <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <p style="padding: 0 0 20px 0; border-bottom: 1px solid rgb(234, 234, 234); margin: 0; font: 12px/ 16px Arial, sans-serif"> Thank you for shopping with us.<br /> <span class="signature" style="font-size: 16px; font-weight: bold"> <strong>Amazon.com</strong> </span> </p> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table id="marketingContent" style="width: 100%; border-bottom: 1px solid rgb(204, 204, 204); border-collapse: none; padding: 15px 0 15px 0"> 
+           <tbody>
+            <tr> 
+             <td class="left" style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+              <div style="display:none;"></div>
+              <table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+               <tbody>
+                <tr>
+                 <td align="center" style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"><map name="mappedshoespromo"><area shape="rect" coords="0,0,300,75" alt="Shoes" href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=ITEUQAVSVS3WR1U98SPHJZQSHWGA&T=C&U=http%3A%2F%2Fwww.amazon.com%3A80%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_lsh001%2F179-5715859-3646502%3F_encoding%3DUTF8%26location%3Dhttp%253A%252F%252Fwww.amazon.com%252Fb%253Fnode%253D672123011%26token%3D3A0F170E7CEFE27BDC730D3D7344512BC1296B83%26pf_rd_m%3DATVPDKIKX0DER%26pf_rd_s%3Demail-center-1%26pf_rd_r%3D1YBM75XKHTV7JDZT1PG0%26pf_rd_t%3D401%26pf_rd_p%3D1771013802%26pf_rd_i%3Dcontentsymphonyslot"></area> </map><img src="https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2013/CLOTHING/MISC/TRANSACTIONAL/0406_Trans_shoes._V340785452_.gif" align="center" usemap="#mappedshoespromo" alt="Shoes" border="0" /></td>
+                </tr>
+               </tbody>
+              </table> </td> 
+             <td class="right" style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+              <div style="display:none;"></div>
+              <table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+               <tbody>
+                <tr>
+                 <td align="center" style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"><map name="onebuttonapp"><area shape="rect" coords="0,0,300,75" alt="Amazon 1Button App" href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=JUATDEAYLPAG8CYCYLBE1MEJNAWA&T=C&U=https%3A%2F%2Fwww.amazon.com%3A443%2Fgp%2Fredirect.html%2Fref%3Dpe_385040_30332200_bitm_v1_us_d140205_em_tr_5pr1%2F185-3996135-3413965%3Fie%3DUTF8%26location%3Dhttps%253A%252F%252Fwww.amazon.com%252Fgp%252FBIT%252FoneButtonPromotion%253FbitCampaignCode%253Dv1_us_d140205_em_tr_5pr1%2526ver%253D3.0%26token%3D661ABEA050EC7ED103349320C53489637F654274%26pf_rd_m%3DATVPDKIKX0DER%26pf_rd_s%3Demail-center-1%26pf_rd_r%3D1ZSJ6VKY3T05DGBK9G04%26pf_rd_t%3D401%26pf_rd_p%3D1825559622%26pf_rd_i%3Dcontentsymphonyslot"></area> </map><img src="https://images-na.ssl-images-amazon.com/images/G/01/associates/BIT/US_1BA_5Promo_300x75._V335748929_.png" align="center" usemap="#onebuttonapp" alt="Amazon 1Button App" border="0" /></td>
+                </tr>
+               </tbody>
+              </table> </td> 
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+        <tr> 
+         <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> 
+          <table id="legalCopy" style="width: 100%; margin: 20px 0 0 0; border-collapse: collapse"> 
+           <tbody>
+            <tr> 
+             <td style="vertical-align: top; font-size: 13px; line-height: 18px; font-family: Arial, sans-serif"> <p style="font-size: 10px; color: rgb(102, 102, 102); line-height: 16px; margin: 0 0 10px 0; font: 10px"> The payment for your invoice is processed by Amazon Payments, Inc. P.O. Box 81226 Seattle, Washington 98108-1226. If you need more information, please contact (866) 216-1075 </p> <p style="font-size: 10px; color: rgb(102, 102, 102); line-height: 16px; margin: 0 0 10px 0; font: 10px"> Unless otherwise noted, items sold by Amazon.com LLC are subject to sales tax in select states in accordance with the applicable laws of that state. If your order contains one or more items from a seller other than Amazon.com LLC, it may be subject to state and local sales tax, depending upon the seller's business policies and the location of their operations. Learn more about <a href="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=NZPGFUMHZIAF8C7KLJ7YAGKQT2SA&T=C&U=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fhelp%2Fcustomer%2Fdisplay.html%2Fref%3Dpe_385040_30332200_TE_tx%3Fie%3DUTF8%26nodeId%3D200961550" style="font-size: 10px; font: 10px; text-decoration: none; color: rgb(0, 102, 153)">tax and seller information</a>. </p> <p style="font-size: 10px; color: rgb(102, 102, 102); line-height: 16px; margin: 0 0 10px 0; font: 10px"> This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message. </p> </td> 
+            </tr> 
+            <tr>  
+            </tr> 
+           </tbody>
+          </table> </td> 
+        </tr> 
+       </tbody>
+      </table> </td> 
+    </tr> 
+   </tbody>
+  </table>  
+ <img src="http://www.amazon.com/gp/r.html?R=3G2A4EEYPDXDP&C=3T5MUR8F9569O&H=PIS4UMWAGEJBXUY0OAESRPCWNDOA&T=E&U=http%3A%2F%2Fimages.amazon.com%2Fimages%2FG%2F01%2Fnav%2Ftransp.gif" /></body>
+</html> 
