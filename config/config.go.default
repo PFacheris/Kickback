@@ -2,4 +2,10 @@ package config
 
 const (
     MY_VAR = "YAY"
+    CLIENT_ID = ""
+    CLIENT_SECRET = ""
+    GOOGLE_REDIRCET_URL = ""
+    GOOGLE_API_SCOPE = ""
+    GOOGLE_AUTH_URL = ""
+    GOOGLE_TOKEN_URL = ""
 )
