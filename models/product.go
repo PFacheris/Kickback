@@ -8,7 +8,7 @@ import (
 )
 
 type Product struct {
-  Id             int64     `json:"id"`
+  Id             string    `json:"id" binding:"required" sql:"type:size:255;not null;unique"`
   Name           string    `json:"name" binding:"required" sql:"type:size:255;not null"`
   URL            string    `json:"url" binding:"required" sql:"type:size:255;not null;unique"`
   CurrentPrice   float32   `json:"current_price" sql:"type:decimal(11,2)"`
