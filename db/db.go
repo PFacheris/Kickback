@@ -6,7 +6,7 @@ import (
     _ "github.com/go-sql-driver/mysql"
 
     // Application Specific Imports
-    . "github.com/pfacheris/kickback/models"
+
 )
 
 var DB gorm.DB
@@ -23,6 +23,4 @@ func init() {
 
     DB.DB().SetMaxIdleConns(10)
     DB.DB().SetMaxOpenConns(100)
-
-    DB.AutoMigrate(User{})
 }

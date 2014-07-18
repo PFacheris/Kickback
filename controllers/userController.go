@@ -23,11 +23,11 @@ func (controller UserController) Create(user User, errs binding.Errors, res http
   res.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
   // Check for input validation errors
-  if errs.Len() > 0 { return handleErrors(422, errs[0]) }
+  if errs.Len() > 0 { return handleJSONErrors(422, errs[0]) }
 
   // Attempt Save to DB and Handle Result
   err = DB.Create(&user).Error
-  if err != nil { return handleErrors(http.StatusConflict, err) }
+  if err != nil { return handleJSONErrors(http.StatusConflict, err) }
 
   // Return Result
   res.Header().Set("Location", fmt.Sprintf("/users/%d", user.Id))
@@ -44,12 +44,12 @@ func (controller UserController) Read(res http.ResponseWriter, params martini.Pa
 
   // Parse Query Param
   id, err := strconv.ParseInt(params["id"], 10, 64)
-  if err != nil { return handleErrors(422, err) }
+  if err != nil { return handleJSONErrors(422, err) }
 
   // Read From DB
   user := User{}
-  err = DB.First(&user, id).Error
-  if err != nil { return handleErrors(404, err) }
+  err = user.Get(id)
+  if err != nil { return handleJSONErrors(404, err) }
 
   // Return Result
   json, _ := json.Marshal(user)
@@ -64,7 +64,7 @@ func (controller UserController) Destroy() {
 
 }
 
-func handleErrors(status int, e error) (int, []byte) {
+func handleJSONErrors(status int, e error) (int, []byte) {
   json, _ := json.Marshal(map[string]string{
     "message": e.Error(),
   })

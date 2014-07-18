@@ -81,9 +81,9 @@ func getCurrentUserEmail(accessToken string) (string, error) {
   return currentUserInfo.Email, nil
 }
 
-// func handleErrors(status int, e error) (int, []byte) {
-//   json, _ := json.Marshal(map[string]string{
-//     "message": e.Error(),
-//   })
-//   return status, json
-// }
+func handleHTMLErrors(status int, e error) (int, []byte) {
+  json, _ := json.Marshal(map[string]string{
+    "message": e.Error(),
+  })
+  return status, json
+}

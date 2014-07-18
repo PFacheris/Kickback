@@ -1,21 +1,25 @@
-package user
+package models
 
 import (
   // External Packages
   "net/http"
   "time"
   "github.com/martini-contrib/binding"
+  // Application Specific
+  . "github.com/pfacheris/kickback/db"
 )
 
 type User struct {
-  Id             int64     `json:"id"`
-  Email          string    `json:"email" binding:"required" sql:"size:255;not null;unique"`
-  AccessToken    string    `json:"-" binding:"required" sql:"size:255;not null"`
-  RefreshToken   string    `json:"-" binding:"required" sql:"size:255;not null"`
-  ExpireTokenAt  time.Time `json:"-"`
+  Id             int64       `json:"id"`
+  Email          string      `json:"email" binding:"required" sql:"size:255;not null;unique"`
+  LastMessageId  string      `json:"last_message_id" sql:"size:255"`
+  AccessToken    string      `json:"-" binding:"required" sql:"size:255;not null"`
+  RefreshToken   string      `json:"-" binding:"required" sql:"size:255;not null"`
+  ExpireTokenAt  time.Time   `json:"-"`
   CreatedAt      time.Time
   UpdatedAt      time.Time
-  DeletedAt      time.Time `json:"-"`
+  DeletedAt      time.Time   `json:"-"`
+  Purchases      []Purchase
 }
 
 // This method implements binding.Validator and is executed by the binding.Validate middleware
@@ -32,4 +36,18 @@ func (user User) Validate(errors binding.Errors, req *http.Request) binding.Erro
       })
     }
     return errors
+}
+
+func (user *User) Get(id int64) error {
+  if err := DB.First(user, id).Error; err != nil {
+    return err
+  }
+
+  purchases := []Purchase{}
+  if err := DB.Model(user).Related(&purchases).Error; err != nil {
+    return err
+  }
+
+  user.Purchases = purchases
+  return nil
 }
