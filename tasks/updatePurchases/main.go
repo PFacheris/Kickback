@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"github.com/pfacheris/kickback/config"
 	"github.com/pfacheris/kickback/models"
 	"github.com/pfacheris/kickback/tasks/lib/emailparser"
 	"io"
@@ -13,14 +14,6 @@ import (
 	"strings"
 	"sync"
 	"time"
-)
-
-const (
-	EMAIL           = "matthewc267@gmail.com"
-	ACCESS_TOKEN    = "ya29.RgD-zFO5txK7QCEAAAC47m0nvaG5VMH8aAK3km81-ql31jhzRmSpFDBtMBK16SgkujDnwR0h96YU22YVfxo"
-	REFRESH_TOKEN   = "1/2FFEwLRrPWiL5MfnTxsDCT9AfgaoEmaDvi3bbImNc5c"
-	AMAZON_QUERY    = "amazon from:auto-confirm"
-	LAST_MESSAGE_ID = "1450fd07eb5c4272"
 )
 
 type User struct {
@@ -35,16 +28,16 @@ func main() {
 	fmt.Println(aWeekAgo)
 
 	config := &oauth.Config{
-		ClientId:     "692789787338-t9f5805ou1uec14gl1l4fttohtkld54e.apps.googleusercontent.com",
-		ClientSecret: "mfFPXn7ZZDlXw8TR2bwtgexD",
-		RedirectURL:  "http://localhost:3000/oauth2callback",
-		Scope:        "https://www.googleapis.com/auth/userinfo.email,https://www.googleapis.com/auth/gmail.readonly,https://www.googleapis.com/auth/gmail.compose",
-		AuthURL:      "https://accounts.google.com/o/oauth2/auth",
-		TokenURL:     "https://accounts.google.com/o/oauth2/token",
+		ClientId:     config.CLIENT_ID,
+		ClientSecret: config.CLIENT_SECRET,
+		RedirectURL:  config.GOOGLE_REDIRCET_URL,
+		Scope:        config.GOOGLE_API_SCOPE,
+		AuthURL:      config.GOOGLE_AUTH_URL,
+		TokenURL:     config.GOOGLE_TOKEN_URL,
 	}
 
 	users := make([]User, 0)
-	users = append(users, User{Email: EMAIL, AccessToken: ACCESS_TOKEN, RefreshToken: REFRESH_TOKEN})
+	users = append(users, User{Email: EMAIL, AccessToken: config.ACCESS_TOKEN, RefreshToken: config.REFRESH_TOKEN})
 	for _, user := range users {
 
 		transport := &oauth.Transport{
@@ -59,19 +52,21 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
+		// @TODO
 		// for each user, get their refresh token
 		// use that token to get the access token if isExpired
 
 		// get list of all 'amazon' messages
-		listResponse, err := gmailService.Users.Messages.List(EMAIL).Q(AMAZON_QUERY).MaxResults(int64(100)).Do()
+		listResponse, err := gmailService.Users.Messages.List(config.EMAIL).Q(config.AMAZON_QUERY).MaxResults(int64(100)).Do()
 		if err != nil {
 			panic(err)
 		}
 		messages := listResponse.Messages
 
+		// @TODO: use user value, not const
 		// ignore all IDs after user.LastEmailID
-		if LAST_MESSAGE_ID != "" {
-			messages = filterBeforeID(messages, LAST_MESSAGE_ID)
+		if config.LAST_MESSAGE_ID != "" {
+			messages = filterBeforeID(messages, config.LAST_MESSAGE_ID)
 		}
 
 		// create waitgroup
@@ -84,7 +79,7 @@ func main() {
 			// for each message, grab its details and return if it's within the last week
 			go func(messageID string, w *sync.WaitGroup, out chan models.Purchase) {
 				defer w.Done()
-				msg, err := gmailService.Users.Messages.Get(EMAIL, messageID).Format("full").Do()
+				msg, err := gmailService.Users.Messages.Get(config.EMAIL, messageID).Format("full").Do()
 				if err != nil {
 					return
 				}
