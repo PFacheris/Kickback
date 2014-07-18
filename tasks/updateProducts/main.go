@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/pfacheris/kickback/tasks/kickbacklib"
+	"github.com/pfacheris/kickback/tasks/lib/emailparser"
 	"sync"
 	// "github.com/Shrugs/goaws"
 	"time"

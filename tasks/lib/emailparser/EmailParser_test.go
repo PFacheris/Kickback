@@ -1,4 +1,4 @@
-package kickback
+package emailparser
 
 import (
 	"fmt"

@@ -6,7 +6,8 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"github.com/pfacheris/kickback/tasks/kickbacklib"
+	"github.com/pfacheris/kickback/models"
+	"github.com/pfacheris/kickback/tasks/lib/emailparser"
 	"io"
 	"net/http"
 	"strings"
@@ -76,12 +77,12 @@ func main() {
 		// create waitgroup
 		var wg sync.WaitGroup
 
-		out := make(chan kickback.Purchase, len(messages))
+		out := make(chan models.Purchase, len(messages))
 		wg.Add(len(messages))
 
 		for _, message := range messages {
 			// for each message, grab its details and return if it's within the last week
-			go func(messageID string, w *sync.WaitGroup, out chan kickback.Purchase) {
+			go func(messageID string, w *sync.WaitGroup, out chan models.Purchase) {
 				defer w.Done()
 				msg, err := gmailService.Users.Messages.Get(EMAIL, messageID).Format("full").Do()
 				if err != nil {
@@ -129,7 +130,7 @@ func main() {
 				if err != nil {
 					panic(err)
 				}
-				ep := kickback.EmailParser{}
+				ep := emailparser.EmailParser{}
 				ep.Parse(out, bodyReader)
 				return
 			}(message.Id, &wg, out)
@@ -158,16 +159,6 @@ func filterBeforeID(messages []*gmail.Message, lastID string) (ret []*gmail.Mess
 	ret = messages[0 : lastIndex-1]
 	return ret
 }
-
-// func filterMessages(messages []*Message, fn func(*Message) bool) (ret []*Message) {
-// 	ret = make([]*Message, 0)
-// 	for _, msg := range messages {
-// 		if fn(msg) {
-// 			ret = append(ret, msg)
-// 		}
-// 	}
-// 	return ret
-// }
 
 func whereHeader(headers []*gmail.MessagePartHeader, fn func(*gmail.MessagePartHeader) bool) (h *gmail.MessagePartHeader, err error) {
 	for _, header := range headers {
