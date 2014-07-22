@@ -21,9 +21,9 @@ func main() {
   m = martini.New()
 
   // Setup middleware
-  m.Use(martini.Static("public"))
+  m.Use(martini.Static("static_dist"))
   m.Use(render.Renderer(render.Options{
-    Directory: "public/views",
+    Directory: "static_dist/views",
     Extensions: []string{".html"},
     IndentJSON: false,
   }))

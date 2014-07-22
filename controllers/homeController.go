@@ -54,12 +54,12 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
     }
 
     // User created, render success page
-    r.HTML(200, "home", nil)
+    r.HTML(200, "landing", nil)
     return
   }
 
   // User previously existed, render success page
-  r.HTML(200, "home", nil)
+  r.HTML(200, "landing", nil)
   return
 }
 
