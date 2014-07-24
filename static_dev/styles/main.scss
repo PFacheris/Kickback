@@ -1,28 +1,174 @@
-body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
+@import "compass";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
+@import "variables";
+
+*, p, a, h1, h2, h3, h4, h5, h6, span {
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
 }
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    font-size: 18px;
-    font-weight: 200;
-    line-height: 30px;
-    background-color: #eee;
-    border-radius: 6px;
-    padding: 60px;
-    h1 {
-        font-size: 60px;
-        line-height: 1;
-        letter-spacing: -1px;
+.call-to-action-container {
+  position: relative;
+  width: 100%;
+
+  &:before {
+    content: "";
+    background: url("http://thepatternlibrary.com/img/a.jpg");
+    background-repeat: repeat;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    -webkit-filter: blur(0px) grayscale(100%);
+  }
+
+  &:after {
+    content: "";
+    background: rgba(0,0,0,.15);
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .call-to-action-container-overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    @include background-image(radial-gradient(center, ellipse cover, rgba(168,203,126,0.8) 0%, rgba(148,205,129,0.8) 25%, rgba(132,207,136,0.85) 50%, rgba(135,209,161,0.95) 75%, rgba(138,212,186,1) 100%));
+  }
+
+  .call-to-action-header {
+    width: 90%;
+    margin: 0 5%;
+    padding: 0;
+    height: 50px;
+    list-style: none;
+    position: relative;
+
+    .call-to-action-logo {
+      h1 {
+        color: white;
+        margin: 0;
+        font-size: 22px;
+        line-height: 50px;
+        @include breakpoint(mobile) {
+          font-size: 18px;
+        }
+      }
     }
-}
+  }
 
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+  .call-to-action-content {
+    width: 90%;
+    margin: 0 5%;
+    height: 550px;
+    text-align: center;
+    position: relative;
+    color: white;
+    padding: 10px 40px;
+    padding-top: 40px;
+    padding-bottom: 150px;
+    @include box-sizing(border-box);
+
+    @include breakpoint(tablet) {
+      padding-top: 10px;
+    }
+    @include breakpoint(mobile) {
+      padding-top: 10px;
+    }
+
+    @include transition-property(padding, font);
+    @include transition-duration(.2s);
+
+    h2 {
+      font-family: 'Bree Serif', serif;
+      margin-bottom: 0;
+      font-size: 40px;
+
+      @include breakpoint(tablet) {
+        font-size: 31px;
+      }
+      @include breakpoint(mobile) {
+        font-size: 24px;
+      }
+    }
+
+    .subheader {
+      font-weight: 500;
+      font-size: 23px;
+      @include breakpoint(tablet) {
+        font-size: 21px;
+      }
+      @include breakpoint(mobile) {
+        font-size: 18px;
+      }
+    }
+
+    p {
+      color: #f5f5f5;
+      font-size: 16px;
+      margin-top: 45px;
+      @include breakpoint(mobile) {
+        font-size: 14px;
+      }
+    }
+
+    .forwarding-email {
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      @include breakpoint(mobile) {
+        font-size: 16px;
+      }
+    }
+
+    .call-to-action-btn {
+      position: relative;
+      display: block;
+      background: none;
+      border: 3px solid white;
+      @include border-radius(3px);
+      width: 150px;
+      height: 40px;
+      line-height: 40px;
+      padding: 5px;
+      color: white;
+      margin:0 auto;
+      text-decoration: none;
+      overflow: none;
+      @include transition-property(background, color, border-color);
+      @include transition-duration(.2s);
+
+      &:before {
+        content: "";
+
+      }
+
+      &:hover {
+        background: rgba(0,0,0,.1);
+      }
+
+      &:active {
+        color: rgba(0,0,0,.2);
+        border-color: rgba(0,0,0,.2);
+        background: rgba(0,0,0,.1);
+      }
+    }
+  }
+
+  .call-to-action-footer {
+    background: white;
+    width: 80%;
+    height: 300px;
+    margin: 0px 10%;
+    position: absolute;
+    bottom: -150px;
+    z-index: 2;
+    @include breakpoint(mobile) {
+      width: 90%;
+      margin: 0px 5%;
+    }
+  }
 }

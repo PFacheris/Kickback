@@ -1,0 +1,20 @@
+// Colors
+$color1: #a8cb7e;
+$color2: #94cd81;
+$color3: #84cf88;
+$color4: #87d1a1;
+$color5: #8ad4ba;
+
+
+// Breakpoints
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (min-width: 1024px) { @content; }
+  }
+  @else if $point == tablet {
+    @media (min-width: 768px) and (max-width: 1024px) { @content; }
+  }
+  @else if $point == mobile {
+    @media (max-width: 768px)  { @content; }
+  }
+}

@@ -32,6 +32,7 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
   // Check if the user already exists
   email, err := getCurrentUserEmail(tokens.Access())
   if err != nil {
+    HandleError("html", 500, err, r)
     return
   }
 
@@ -39,6 +40,7 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
   if err = DB.Where("email = ?", email).First(&user).Error; err != nil {
     // Check for err type
     if err != gorm.RecordNotFound {
+      HandleError("html", 500, err, r)
       return
     }
     // User did not previously exist, create it
@@ -50,6 +52,7 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
     }
 
     if err = DB.Create(&user).Error; err != nil {
+      HandleError("html", 500, err, r)
       return
     }
 
@@ -60,7 +63,6 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
 
   // User previously existed, render success page
   r.HTML(200, "landing", nil)
-  return
 }
 
 // Utility Functions
@@ -70,20 +72,16 @@ func getCurrentUserEmail(accessToken string) (string, error) {
   req, _ := http.NewRequest("GET", url, nil)
   req.Header.Add("Authorization", "Bearer " + accessToken)
 
-  res, _ := client.Do(req)
+  res, err := client.Do(req)
+  if err != nil {
+    return "", err
+  }
 
   var currentUserInfo userInfo
-  err := json.NewDecoder(res.Body).Decode(&currentUserInfo)
+  err = json.NewDecoder(res.Body).Decode(&currentUserInfo)
   if err != nil {
     return "", err
   }
 
   return currentUserInfo.Email, nil
-}
-
-func handleHTMLErrors(status int, e error) (int, []byte) {
-  json, _ := json.Marshal(map[string]string{
-    "message": e.Error(),
-  })
-  return status, json
 }

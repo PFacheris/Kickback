@@ -2,6 +2,7 @@ package main
 
 import (
   // External Packages
+  "errors"
   "github.com/go-martini/martini"
   "github.com/martini-contrib/binding"
   "github.com/martini-contrib/oauth2"
@@ -10,7 +11,7 @@ import (
 
   // Application Specific Imports
   . "github.com/pfacheris/kickback/models"
-  . "github.com/pfacheris/kickback/controllers"
+  "github.com/pfacheris/kickback/controllers"
 )
 
 var m *martini.Martini
@@ -41,15 +42,17 @@ func main() {
   r := martini.NewRouter()
 
   // Define Controller Instances
-  homeController := HomeController{}
-  userController := UserController{}
+  homeController := controllers.HomeController{}
+  userController := controllers.UserController{}
 
   r.Get("/", homeController.Index)
 
   r.Get("/users/:id", userController.Read)
   r.Post("/users", binding.Json(User{}), userController.Create)
-  r.Put("/users/:id", binding.Json(User{}), userController.Update)
-  r.Delete("/users/:id", binding.Json(User{}), userController.Destroy)
+
+  r.NotFound(func(r render.Render) {
+    controllers.HandleError("html", 404, errors.New("Page not found."), r)
+  })
 
   // Add the router action
   m.Action(r.Handle)

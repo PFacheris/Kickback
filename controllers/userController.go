@@ -4,10 +4,10 @@ import (
   // External Packages
   "fmt"
   "net/http"
-  "encoding/json"
   "strconv"
   "github.com/go-martini/martini"
   "github.com/martini-contrib/binding"
+  "github.com/martini-contrib/render"
 
   // Application Specific Imports
   . "github.com/pfacheris/kickback/models"
@@ -16,57 +16,43 @@ import (
 
 type UserController struct {}
 
-func (controller UserController) Create(user User, errs binding.Errors, res http.ResponseWriter, params martini.Params) (int, []byte) {
-  var err error
-
-  // Return JSON
-  res.Header().Set("Content-Type", "application/json; charset=UTF-8")
-
+func (controller UserController) Create(user User, errs binding.Errors, res http.ResponseWriter, r render.Render, params martini.Params) {
   // Check for input validation errors
-  if errs.Len() > 0 { return handleJSONErrors(422, errs[0]) }
+  if errs.Len() > 0 {
+    HandleError("json", 422, errs[0], r)
+    return
+  }
 
   // Attempt Save to DB and Handle Result
-  err = DB.Create(&user).Error
-  if err != nil { return handleJSONErrors(http.StatusConflict, err) }
+  if err := DB.Create(&user).Error; err != nil {
+    HandleError("json", http.StatusConflict, err, r)
+    return
+  }
 
   // Return Result
   res.Header().Set("Location", fmt.Sprintf("/users/%d", user.Id))
-  json, _ := json.Marshal(user)
-  return http.StatusCreated, json
+  r.JSON(http.StatusOK, user)
 }
 
 
-func (controller UserController) Read(res http.ResponseWriter, params martini.Params) (int, []byte) {
-  var err error
-
+func (controller UserController) Read(res http.ResponseWriter, r render.Render, params martini.Params) {
   // Return JSON
   res.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
   // Parse Query Param
   id, err := strconv.ParseInt(params["id"], 10, 64)
-  if err != nil { return handleJSONErrors(422, err) }
+  if err != nil {
+    HandleError("json", 422, err, r)
+    return
+  }
 
   // Read From DB
   user := User{}
-  err = user.Get(id)
-  if err != nil { return handleJSONErrors(404, err) }
+  if err = user.Get(id); err != nil {
+    HandleError("json", 404, err, r)
+    return
+  }
 
   // Return Result
-  json, _ := json.Marshal(user)
-  return http.StatusOK, json
-}
-
-func (controller UserController) Update() {
-
-}
-
-func (controller UserController) Destroy() {
-
-}
-
-func handleJSONErrors(status int, e error) (int, []byte) {
-  json, _ := json.Marshal(map[string]string{
-    "message": e.Error(),
-  })
-  return status, json
+  r.JSON(http.StatusOK, user)
 }
