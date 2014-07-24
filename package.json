@@ -1,7 +1,9 @@
 {
   "name": "kickback-static",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-ruby-sass": "~0.6.0"
+  },
   "devDependencies": {
     "connect": "^2.14.4",
     "connect-livereload": "^0.4.0",
