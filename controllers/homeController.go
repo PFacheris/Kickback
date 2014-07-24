@@ -29,40 +29,40 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
 		return
 	}
 
-  // Check if the user already exists
-  email, err := getCurrentUserEmail(tokens.Access())
-  if err != nil {
-    HandleError("html", 500, err, r)
-    return
-  }
+	// Check if the user already exists
+	email, err := getCurrentUserEmail(tokens.Access())
+	if err != nil {
+		HandleError("html", 500, err, r)
+		return
+	}
 
-  user := User{}
-  if err = DB.Where("email = ?", email).First(&user).Error; err != nil {
-    // Check for err type
-    if err != gorm.RecordNotFound {
-      HandleError("html", 500, err, r)
-      return
-    }
-    // User did not previously exist, create it
-    user = User{
-      Email: email,
-      AccessToken: tokens.Access(),
-      RefreshToken: tokens.Refresh(),
-      ExpireTokenAt: tokens.ExpiryTime(),
-    }
+	user := User{}
+	if err = DB.Where("email = ?", email).First(&user).Error; err != nil {
+		// Check for err type
+		if err != gorm.RecordNotFound {
+			HandleError("html", 500, err, r)
+			return
+		}
+		// User did not previously exist, create it
+		user = User{
+			Email:         email,
+			AccessToken:   tokens.Access(),
+			RefreshToken:  tokens.Refresh(),
+			ExpireTokenAt: tokens.ExpiryTime(),
+		}
 
-    if err = DB.Create(&user).Error; err != nil {
-      HandleError("html", 500, err, r)
-      return
-    }
+		if err = DB.Create(&user).Error; err != nil {
+			HandleError("html", 500, err, r)
+			return
+		}
 
-    // User created, render success page
-    r.HTML(200, "landing", nil)
-    return
-  }
+		// User created, render success page
+		r.HTML(200, "landing", nil)
+		return
+	}
 
-  // User previously existed, render success page
-  r.HTML(200, "landing", nil)
+	// User previously existed, render success page
+	r.HTML(200, "landing", nil)
 }
 
 // Utility Functions
@@ -72,36 +72,16 @@ func getCurrentUserEmail(accessToken string) (string, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Add("Authorization", "Bearer "+accessToken)
 
-<<<<<<< Updated upstream
-  res, err := client.Do(req)
-  if err != nil {
-    return "", err
-  }
-
-  var currentUserInfo userInfo
-  err = json.NewDecoder(res.Body).Decode(&currentUserInfo)
-  if err != nil {
-    return "", err
-  }
-=======
-	res, _ := client.Do(req)
-
-	var currentUserInfo userInfo
-	err := json.NewDecoder(res.Body).Decode(&currentUserInfo)
+	res, err := client.Do(req)
 	if err != nil {
 		return "", err
 	}
->>>>>>> Stashed changes
+
+	var currentUserInfo userInfo
+	err = json.NewDecoder(res.Body).Decode(&currentUserInfo)
+	if err != nil {
+		return "", err
+	}
 
 	return currentUserInfo.Email, nil
 }
-<<<<<<< Updated upstream
-=======
-
-func handleHTMLErrors(status int, e error) (int, []byte) {
-	json, _ := json.Marshal(map[string]string{
-		"message": e.Error(),
-	})
-	return status, json
-}
->>>>>>> Stashed changes
