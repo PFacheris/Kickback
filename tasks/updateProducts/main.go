@@ -24,4 +24,6 @@ func main() {
 
 		}(product, &wg)
 	}
+
+	wg.Wait()
 }

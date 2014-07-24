@@ -1,33 +1,33 @@
 package controllers
 
 import (
-  // External Packages
-  "net/http"
-  "encoding/json"
-  "github.com/martini-contrib/oauth2"
-  "github.com/martini-contrib/render"
-  "github.com/jinzhu/gorm"
-  // "code.google.com/p/google-api-go-client/gmail/v1"
+	// External Packages
+	"encoding/json"
+	"github.com/jinzhu/gorm"
+	"github.com/martini-contrib/oauth2"
+	"github.com/martini-contrib/render"
+	"net/http"
+	// "code.google.com/p/google-api-go-client/gmail/v1"
 
-  // Application Specific Imports
-  . "github.com/pfacheris/kickback/models"
-  . "github.com/pfacheris/kickback/db"
+	// Application Specific Imports
+	. "github.com/pfacheris/kickback/db"
+	. "github.com/pfacheris/kickback/models"
 )
 
-type HomeController struct {}
+type HomeController struct{}
 
 type userInfo struct {
-  Email          string `json:"email"`
-  VerifiedEmail  bool   `json:"verified_email"`
+	Email         string `json:"email"`
+	VerifiedEmail bool   `json:"verified_email"`
 }
 
 func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
-  if tokens.IsExpired() {
-    // User is not logged in
-    // Render Landing Page HTML
-    r.HTML(200, "landing", nil)
-    return
-  }
+	if tokens.IsExpired() {
+		// User is not logged in
+		// Render Landing Page HTML
+		r.HTML(200, "landing", nil)
+		return
+	}
 
   // Check if the user already exists
   email, err := getCurrentUserEmail(tokens.Access())
@@ -67,11 +67,12 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
 
 // Utility Functions
 func getCurrentUserEmail(accessToken string) (string, error) {
-  url := "https://www.googleapis.com/oauth2/v2/userinfo"
-  client := &http.Client{}
-  req, _ := http.NewRequest("GET", url, nil)
-  req.Header.Add("Authorization", "Bearer " + accessToken)
+	url := "https://www.googleapis.com/oauth2/v2/userinfo"
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Add("Authorization", "Bearer "+accessToken)
 
+<<<<<<< Updated upstream
   res, err := client.Do(req)
   if err != nil {
     return "", err
@@ -82,6 +83,25 @@ func getCurrentUserEmail(accessToken string) (string, error) {
   if err != nil {
     return "", err
   }
+=======
+	res, _ := client.Do(req)
 
-  return currentUserInfo.Email, nil
+	var currentUserInfo userInfo
+	err := json.NewDecoder(res.Body).Decode(&currentUserInfo)
+	if err != nil {
+		return "", err
+	}
+>>>>>>> Stashed changes
+
+	return currentUserInfo.Email, nil
 }
+<<<<<<< Updated upstream
+=======
+
+func handleHTMLErrors(status int, e error) (int, []byte) {
+	json, _ := json.Marshal(map[string]string{
+		"message": e.Error(),
+	})
+	return status, json
+}
+>>>>>>> Stashed changes
