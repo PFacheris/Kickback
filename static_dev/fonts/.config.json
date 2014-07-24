@@ -1,0 +1,46 @@
+{
+  "name": "kickback",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "884cfc3e6e2d456dd2a2ca0dbb9e6337",
+      "css": "left-open-big",
+      "code": 59393,
+      "src": "entypo"
+    },
+    {
+      "uid": "004882ab2d5c418c5b2060e80596279b",
+      "css": "right-open-big",
+      "code": 59392,
+      "src": "entypo"
+    },
+    {
+      "uid": "91bac16b22827347e9ee20477f0b44d2",
+      "css": "mail-1",
+      "code": 59394,
+      "src": "linecons"
+    },
+    {
+      "uid": "a58c05a8a3ba59ababd4860a30892560",
+      "css": "eye",
+      "code": 59397,
+      "src": "linecons"
+    },
+    {
+      "uid": "6fbd93c0d220507921015a15575009e5",
+      "css": "paper-plane",
+      "code": 59398,
+      "src": "linecons"
+    },
+    {
+      "uid": "b8e88705f42bd79580be828233c65da0",
+      "css": "money",
+      "code": 59396,
+      "src": "linecons"
+    }
+  ]
+}

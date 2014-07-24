@@ -130,30 +130,38 @@
       background: none;
       border: 3px solid white;
       @include border-radius(3px);
-      width: 150px;
+      width: 175px;
       height: 40px;
       line-height: 40px;
       padding: 5px;
       color: white;
       margin:0 auto;
       text-decoration: none;
-      overflow: none;
+      overflow: hidden;
       @include transition-property(background, color, border-color);
       @include transition-duration(.2s);
 
-      &:before {
-        content: "";
-
+      i {
+        position: absolute;
+        right: -175px;
+        @include transition-property(right);
+        @include transition-duration(.5s);
       }
 
       &:hover {
         background: rgba(0,0,0,.1);
+        i {
+          right: 10px;
+        }
       }
 
       &:active {
         color: rgba(0,0,0,.2);
         border-color: rgba(0,0,0,.2);
         background: rgba(0,0,0,.1);
+        i {
+          right: 10px;
+        }
       }
     }
   }
