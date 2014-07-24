@@ -1,4 +1,4 @@
-@import "compass";
+@import "../bower_components/bourbon/dist/bourbon";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 
@@ -36,7 +36,7 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    @include background-image(radial-gradient(center, ellipse cover, rgba(168,203,126,0.8) 0%, rgba(148,205,129,0.8) 25%, rgba(132,207,136,0.85) 50%, rgba(135,209,161,0.95) 75%, rgba(138,212,186,1) 100%));
+    @include radial-gradient(center, ellipse cover, rgba(168,203,126,0.8) 0%, rgba(148,205,129,0.8) 25%, rgba(132,207,136,0.85) 50%, rgba(135,209,161,0.95) 75%, rgba(138,212,186,1) 100%);
   }
 
   .call-to-action-header {
@@ -129,7 +129,7 @@
       display: block;
       background: none;
       border: 3px solid white;
-      @include border-radius(3px);
+      border-radius: 3px;
       width: 175px;
       height: 40px;
       line-height: 40px;
