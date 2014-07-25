@@ -10,8 +10,7 @@ gulp.task('styles', function () {
     return gulp.src('static_dev/styles/main.scss')
         .pipe($.rubySass({
             style: 'expanded',
-            precision: 10,
-            compass: true
+            precision: 10
         }))
         // .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('.tmp/styles'))
