@@ -1,12 +1,28 @@
-@import "../bower_components/bourbon/dist/bourbon";
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
-@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
-
 @import "variables";
 
+@import "../bower_components/bourbon/dist/bourbon";
+@import "../bower_components/neat/app/assets/stylesheets/neat";
+// @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+
 *, p, a, h1, h2, h3, h4, h5, h6, span {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
   text-decoration: none;
+}
+
+.contain-to-grid {
+  width: 80%;
+  margin: 0px 10%;
+  @include media($mobile) {
+    width: 90%;
+    margin: 0px 5%;
+  }
+  @include media($tablet) {
+    width: 90%;
+    margin: 0px 5%;
+  }
 }
 
 .call-to-action-container {
@@ -40,8 +56,6 @@
   }
 
   .call-to-action-header {
-    width: 90%;
-    margin: 0 5%;
     padding: 0;
     height: 50px;
     list-style: none;
@@ -53,7 +67,7 @@
         margin: 0;
         font-size: 22px;
         line-height: 50px;
-        @include breakpoint(mobile) {
+        @include media($mobile) {
           font-size: 18px;
         }
       }
@@ -61,21 +75,18 @@
   }
 
   .call-to-action-content {
-    width: 90%;
-    margin: 0 5%;
-    height: 550px;
     text-align: center;
     position: relative;
     color: white;
     padding: 10px 40px;
     padding-top: 40px;
-    padding-bottom: 150px;
+    padding-bottom: 0px;
     @include box-sizing(border-box);
 
-    @include breakpoint(tablet) {
+    @include media($tablet) {
       padding-top: 10px;
     }
-    @include breakpoint(mobile) {
+    @include media($mobile) {
       padding-top: 10px;
     }
 
@@ -87,10 +98,10 @@
       margin-bottom: 0;
       font-size: 40px;
 
-      @include breakpoint(tablet) {
+      @include media($tablet) {
         font-size: 31px;
       }
-      @include breakpoint(mobile) {
+      @include media($mobile) {
         font-size: 24px;
       }
     }
@@ -98,10 +109,10 @@
     .subheader {
       font-weight: 500;
       font-size: 23px;
-      @include breakpoint(tablet) {
+      @include media($tablet) {
         font-size: 21px;
       }
-      @include breakpoint(mobile) {
+      @include media($mobile) {
         font-size: 18px;
       }
     }
@@ -110,7 +121,7 @@
       color: #f5f5f5;
       font-size: 16px;
       margin-top: 45px;
-      @include breakpoint(mobile) {
+      @include media($mobile) {
         font-size: 14px;
       }
     }
@@ -119,12 +130,13 @@
       color: white;
       font-size: 18px;
       font-weight: bold;
-      @include breakpoint(mobile) {
+      @include media($mobile) {
         font-size: 16px;
       }
     }
 
     .call-to-action-btn {
+      box-sizing: content-box;
       position: relative;
       display: block;
       background: none;
@@ -166,17 +178,97 @@
     }
   }
 
+  .call-to-action-footer-label-container {
+    position: relative;
+    bottom: -175px;
+
+    .call-to-action-footer-label {
+      margin: 0 auto;
+      width: 250px;
+      line-height: 40px;
+      height: 40px;
+      color: white;
+      border-top-right-radius: 3px;
+      border-top-left-radius: 3px;
+      padding: 0 10px;
+      text-align: center;
+
+      i {
+        font-size: 24px;
+      }
+    }
+  }
+
   .call-to-action-footer {
     background: white;
-    width: 80%;
-    height: 300px;
-    margin: 0px 10%;
-    position: absolute;
-    bottom: -150px;
+    position: relative;
+    top: 175px;
     z-index: 2;
-    @include breakpoint(mobile) {
-      width: 90%;
-      margin: 0px 5%;
+
+    .call-to-action-explanation {
+      @include outer-container;
+      list-style: none;
+      margin: 0;
+      padding: 25px 0;
+      @include media($mobile) {
+          padding: 0 25px;
+      }
+      li {
+        @include transition-property(width);
+        @include transition-duration(.2s);
+        @include span-columns(4);
+        @include media($mobile) {
+          @include span-columns(12);
+          &:not(:last-child) {
+            border-bottom: 1px solid #DDDDDD;
+          }
+        }
+
+        display: inline-block;
+        padding: 25px;
+        text-align: center;
+
+        @include media($tablet) {
+          &:not(:last-child) {
+            border-right: 1px solid #DDDDDD;
+          }
+        }
+        @include media($desktop) {
+          &:not(:last-child) {
+            border-right: 1px solid #DDDDDD;
+          }
+        }
+
+        i {
+          color: $secondary-color;
+          font-size: 70px;
+        }
+
+        h4 {
+          color: $secondary-color;
+          font-size: 24px;
+          margin: 5px 0px;
+        }
+
+        p {
+          width: 70%;
+          margin: 20px auto;
+          color: lighten($neutral-color, 25%);
+
+        }
+      }
     }
+  }
+}
+
+.dashboard-explanation-container {
+  height: 500px;
+  width: 100%;
+  background: #738E86;
+  position: relative;
+  top: 175px;
+
+  .dashboard-explanation {
+    padding: 50px 10%;
   }
 }

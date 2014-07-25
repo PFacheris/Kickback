@@ -1,3 +1,5 @@
+@import "../bower_components/neat/app/assets/stylesheets/neat-helpers";
+
 // Colors
 $color1: #a8cb7e;
 $color2: #94cd81;
@@ -5,16 +7,20 @@ $color3: #84cf88;
 $color4: #87d1a1;
 $color5: #8ad4ba;
 
+$neutral-color: #404A47;
+$secondary-color: #566b64;
+
 
 // Breakpoints
-@mixin breakpoint($point) {
-  @if $point == desktop {
-    @media (min-width: 1024px) { @content; }
-  }
-  @else if $point == tablet {
-    @media (min-width: 768px) and (max-width: 1024px) { @content; }
-  }
-  @else if $point == mobile {
-    @media (max-width: 768px)  { @content; }
-  }
-}
+$mobile-bp: 768px;
+$tablet-bp: 1024px;
+
+$mobile: new-breakpoint(max-width $mobile-bp 12);
+$tablet: new-breakpoint(min-width $mobile-bp max-width $tablet-bp 12);
+$desktop: new-breakpoint(min-width $tablet-bp 12);
+
+// Grid Settings
+$column: 90px;
+$gutter: 0px;
+$grid-columns: 12;
+$max-width: em(1088);
