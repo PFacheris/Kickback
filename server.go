@@ -1,6 +1,8 @@
 package main
 
 import (
+	golangoauth2 "github.com/golang/oauth2"
+	"strings"
 	// External Packages
 	"errors"
 	"github.com/go-martini/martini"
@@ -10,6 +12,7 @@ import (
 	"github.com/martini-contrib/sessions"
 
 	// Application Specific Imports
+	"github.com/pfacheris/kickback/config"
 	"github.com/pfacheris/kickback/controllers"
 	. "github.com/pfacheris/kickback/models"
 )
@@ -32,11 +35,13 @@ func main() {
 	m.Use(martini.Recovery())
 	m.Use(martini.Logger())
 	m.Use(sessions.Sessions("my_session", sessions.NewCookieStore([]byte("secret123"))))
-	m.Use(oauth2.Google(&oauth2.Options{
-		ClientId:     "692789787338-t9f5805ou1uec14gl1l4fttohtkld54e.apps.googleusercontent.com",
-		ClientSecret: "mfFPXn7ZZDlXw8TR2bwtgexD",
-		RedirectURL:  "http://localhost:3000/oauth2callback",
-		Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/gmail.readonly", "https://www.googleapis.com/auth/gmail.compose"},
+	m.Use(oauth2.Google(&golangoauth2.Options{
+		ClientID:       config.CLIENT_ID,
+		ClientSecret:   config.CLIENT_SECRET,
+		RedirectURL:    config.GOOGLE_REDIRCET_URL,
+		Scopes:         strings.Split(config.GOOGLE_API_SCOPE, " "),
+		AccessType:     "offline",
+		ApprovalPrompt: "force",
 	}))
 
 	// Setup routes

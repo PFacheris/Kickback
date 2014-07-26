@@ -10,12 +10,10 @@ import (
 )
 
 type User struct {
-	Id            int64     `json:"id"`
-	Email         string    `json:"email" binding:"required" sql:"size:255;not null;unique"`
-	LastMessageId string    `json:"last_message_id" sql:"size:255"`
-	AccessToken   string    `json:"-" binding:"required" sql:"size:255;not null"`
-	RefreshToken  string    `json:"-" binding:"required" sql:"size:255;not null"`
-	ExpireTokenAt time.Time `json:"-"`
+	Id            int64  `json:"id"`
+	Email         string `json:"email" binding:"required" sql:"size:255;not null;unique"`
+	LastMessageId string `json:"last_message_id" sql:"size:255"`
+	RefreshToken  string `json:"-" binding:"required" sql:"size:255"`
 	CreatedAt     time.Time
 	UpdatedAt     time.Time
 	DeletedAt     time.Time `json:"-"`

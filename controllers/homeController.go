@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	// External Packages
 	"encoding/json"
 	"github.com/jinzhu/gorm"
@@ -44,11 +45,11 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
 			return
 		}
 		// User did not previously exist, create it
+		fmt.Println(tokens.Refresh())
+		fmt.Println(tokens.Access())
 		user = User{
-			Email:         email,
-			AccessToken:   tokens.Access(),
-			RefreshToken:  tokens.Refresh(),
-			ExpireTokenAt: tokens.ExpiryTime(),
+			Email:        email,
+			RefreshToken: tokens.Refresh(),
 		}
 
 		if err = DB.Create(&user).Error; err != nil {
@@ -60,7 +61,6 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
 		r.HTML(200, "landing", nil)
 		return
 	}
-
 	// User previously existed, render success page
 	r.HTML(200, "landing", nil)
 }
