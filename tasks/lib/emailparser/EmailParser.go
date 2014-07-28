@@ -17,7 +17,7 @@ const (
 
 type EmailParser struct{}
 
-func (e *EmailParser) Parse(ch chan models.Purchase, r io.Reader) {
+func (e *EmailParser) Parse(ch chan *models.Purchase, r io.Reader) {
 
 	doc, err := goquery.NewDocumentFromReader(r)
 	if err != nil {
@@ -54,7 +54,7 @@ func (e *EmailParser) Parse(ch chan models.Purchase, r io.Reader) {
 			ProductId:     product.Id,
 		}
 
-		ch <- purchase
+		ch <- &purchase
 	})
 	return
 }
