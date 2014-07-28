@@ -21,8 +21,8 @@ import (
 
 func main() {
 
-	aWeekAgo := time.Now().AddDate(0, 0, -14)
-	fmt.Println(aWeekAgo)
+	aWeekAgo := time.Now().AddDate(0, -1, 0)
+	// fmt.Println(aWeekAgo)
 
 	oauthConfig := &oauth.Config{
 		ClientId:     config.CLIENT_ID,
@@ -36,124 +36,122 @@ func main() {
 	users := []models.User{}
 	DB.Where("refresh_token != ''").Find(&users)
 
-	fmt.Println(users)
+	// fmt.Println(users)
 
 	// create waitgroup
 	var wg sync.WaitGroup
-	out := make(chan *models.Purchase, len(users))
+	out := make(chan *models.PurchaseData, len(users))
 
-	wg.Add(len(users))
-	for _, u := range users {
-		go func(user *models.User, w *sync.WaitGroup) {
-			defer w.Done()
+	for _, user := range users {
+		transport := &oauth.Transport{
+			Token:     &oauth.Token{RefreshToken: user.RefreshToken},
+			Config:    oauthConfig,
+			Transport: http.DefaultTransport,
+		}
 
-			transport := &oauth.Transport{
-				Token:     &oauth.Token{RefreshToken: user.RefreshToken},
-				Config:    oauthConfig,
-				Transport: http.DefaultTransport,
-			}
+		err := transport.Refresh()
+		if err != nil {
+			panic(err)
+		}
 
-			err := transport.Refresh()
-			if err != nil {
-				panic(err)
-			}
+		// fmt.Println("%#v", transport.Token)
 
-			// fmt.Println("%#v", transport.Token)
+		oauthHttpClient := transport.Client()
 
-			oauthHttpClient := transport.Client()
+		gmailService, err := gmail.New(oauthHttpClient)
+		if err != nil {
+			panic(err)
+		}
 
-			gmailService, err := gmail.New(oauthHttpClient)
-			if err != nil {
-				panic(err)
-			}
+		// get list of all 'amazon' messages
+		listResponse, err := gmailService.Users.Messages.List(user.Email).Q(config.AMAZON_QUERY).MaxResults(int64(100)).Do()
+		if err != nil {
+			panic(err)
+		}
+		messages := listResponse.Messages
+		// fmt.Println(messages)
+		// ignore all IDs after user.LastMessageId
+		// fmt.Println(user.LastMessageId)
+		if user.LastMessageId != "" {
+			messages = filterBeforeID(messages, user.LastMessageId)
+		}
 
-			// get list of all 'amazon' messages
-			listResponse, err := gmailService.Users.Messages.List(user.Email).Q(config.AMAZON_QUERY).MaxResults(int64(100)).Do()
-			if err != nil {
-				panic(err)
-			}
-			messages := listResponse.Messages
+		wg.Add(len(messages))
+		for _, message := range messages {
+			// for each message, grab its details and return if it's within the last week
+			go func(messageID string) {
+				defer wg.Done()
+				msg, err := gmailService.Users.Messages.Get(user.Email, messageID).Format("full").Do()
+				if err != nil {
+					panic(err)
+					return
+				}
 
-			// ignore all IDs after user.LastEmailID
-			if config.LAST_MESSAGE_ID != "" {
-				messages = filterBeforeID(messages, config.LAST_MESSAGE_ID)
-			}
+				receivedHeader, err := whereHeader(msg.Payload.Headers, func(header *gmail.MessagePartHeader) bool {
+					return header.Name == "Date"
+				})
+				receivedDate, err := time.Parse("Mon, 2 Jan 2006 15:04:05 -0700", receivedHeader.Value)
+				if err != nil {
+					// fmt.Println(receivedHeader.Value)
+					fmt.Println(err)
+					// panic(err)
+				}
 
-			wg.Add(len(messages))
+				// ignore if the message was send after a week ago from now
+				if receivedDate.Before(aWeekAgo) {
+					// fmt.Println("IGNORING MESSAGE")
+					return
+				}
 
-			for _, message := range messages {
-				// for each message, grab its details and return if it's within the last week
-				go func(messageID string) {
-					defer w.Done()
-					msg, err := gmailService.Users.Messages.Get(user.Email, messageID).Format("full").Do()
-					if err != nil {
-						return
-					}
-
-					receivedHeader, err := whereHeader(msg.Payload.Headers, func(header *gmail.MessagePartHeader) bool {
-						return header.Name == "Date"
-					})
-					receivedDate, err := time.Parse("Mon, 2 Jan 2006 15:04:05 -0700", receivedHeader.Value)
-					if err != nil {
-						panic(err)
-					}
-
-					// ignore if the message was send after a week ago from now
-					if !receivedDate.After(aWeekAgo) {
-						return
-					}
-
-					bodyReader, err := func() (r io.Reader, err error) {
-						b64body := func() string {
-							fmt.Println(msg.Id)
-							for _, part := range msg.Payload.Parts {
-								for _, p := range part.Parts {
-									headerMap := mapFromHeaders(p.Headers)
-									val, ok := headerMap["Content-Type"]
-									if ok && strings.Index(val, "text/html") != -1 {
-										// yay
-										fmt.Println(len(p.Body.Data))
-										return p.Body.Data
-									}
+				bodyReader, err := func() (r io.Reader, err error) {
+					b64body := func() string {
+						// fmt.Println(msg.Id)
+						for _, part := range msg.Payload.Parts {
+							for _, p := range part.Parts {
+								headerMap := mapFromHeaders(p.Headers)
+								val, ok := headerMap["Content-Type"]
+								if ok && strings.Index(val, "text/html") != -1 {
+									// yay
+									return p.Body.Data
 								}
 							}
-							return ""
-						}()
-
-						if len(b64body) > 0 {
-							r, _ := base64.URLEncoding.DecodeString(b64body)
-							return strings.NewReader(string(r[:])), err
 						}
-
-						return strings.NewReader(""), errors.New("NO EMAIL BODY???")
+						return ""
 					}()
 
-					if err != nil {
-						panic(err)
+					if len(b64body) > 0 {
+						r, _ := base64.URLEncoding.DecodeString(b64body)
+						return strings.NewReader(string(r[:])), err
 					}
-					ep := emailparser.EmailParser{}
-					ep.Parse(out, bodyReader)
-					return
-				}(message.Id)
 
-			}
-		}(&u, &wg)
+					return strings.NewReader(""), errors.New("NO EMAIL BODY???")
+				}()
+
+				if err != nil {
+					panic(err)
+				}
+				ep := emailparser.EmailParser{}
+				ep.Parse(out, bodyReader)
+				return
+			}(message.Id)
+
+		}
 	}
-	fmt.Println("Waiting...")
+	fmt.Println("Waiting")
 	wg.Wait()
-	close(out)
-	fmt.Println("Done Waiting...")
-	fmt.Printf("&#v", <-out)
-	for purchase := range out {
+	for purchaseData := range out {
 		// @TODO: ADD EVERYTHING TO THE DB, YAY
-		fmt.Printf("&#v", purchase)
+		fmt.Printf("%#v", purchaseData)
 		fmt.Println("")
 	}
+
+	close(out)
+	fmt.Println("Done Waiting...")
 
 }
 
 func filterBeforeID(messages []*gmail.Message, lastID string) (ret []*gmail.Message) {
-	fmt.Println(messages)
+	// fmt.Println(messages)
 	if len(messages) == 0 {
 		return messages
 	}

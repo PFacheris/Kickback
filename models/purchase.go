@@ -16,3 +16,12 @@ type Purchase struct {
 	UserId         int64     `json:"-"`
 	ProductId      string    `json:"-"`
 }
+
+// Describes information we get from email
+type PurchaseData struct {
+	ProductId     string
+	ProductName   string
+	ProductURL    string
+	PurchasePrice float32
+	PurchaseAt    time.Time
+}
