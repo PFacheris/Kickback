@@ -21,6 +21,9 @@ import (
 
 func main() {
 
+	DB.AutoMigrate(models.Product{})
+	DB.AutoMigrate(models.Purchase{})
+
 	aWeekAgo := time.Now().AddDate(0, -1, 0)
 	// fmt.Println(aWeekAgo)
 
@@ -36,14 +39,13 @@ func main() {
 	users := []models.User{}
 	DB.Where("refresh_token != ''").Find(&users)
 
-	// fmt.Println(users)
+	for _, user := range users {
+		func(user models.User) {
 
-	// create waitgroup
-	var wg sync.WaitGroup
-	out := make(chan *models.PurchaseData, 1000)
+			// create waitgroup
+			var wg sync.WaitGroup
+			out := make(chan *models.PurchaseData, len(users)*10)
 
-	for _, u := range users {
-		func(user *models.User) {
 			transport := &oauth.Transport{
 				Token:     &oauth.Token{RefreshToken: user.RefreshToken},
 				Config:    oauthConfig,
@@ -77,11 +79,16 @@ func main() {
 				messages = filterBeforeID(messages, user.LastMessageId)
 			}
 
+			mostRecentMessageID := ""
+			// make a time that's definitely last
+			mostRecentMessageTime := time.Now().AddDate(-1, 0, 0)
+
 			wg.Add(len(messages))
 			for _, message := range messages {
 				// for each message, grab its details and return if it's within the last week
 				go func(messageID string) {
 					defer wg.Done()
+
 					msg, err := gmailService.Users.Messages.Get(user.Email, messageID).Format("full").Do()
 					if err != nil {
 						panic(err)
@@ -102,6 +109,10 @@ func main() {
 					if receivedDate.Before(aWeekAgo) {
 						// fmt.Println("IGNORING MESSAGE")
 						return
+					}
+					if receivedDate.After(mostRecentMessageTime) {
+						mostRecentMessageTime = receivedDate
+						mostRecentMessageID = messageID
 					}
 
 					bodyReader, err := func() (r io.Reader, err error) {
@@ -137,17 +148,45 @@ func main() {
 				}(message.Id)
 
 			}
-		}(&u)
+
+			fmt.Println("Waiting")
+			wg.Wait()
+			close(out)
+			for purchaseData := range out {
+				// @TODO: ADD EVERYTHING TO THE DB, YAY
+				// DB.LogMode(true)
+				// grab the Product from the DB or create a new one
+				product := &models.Product{}
+				if err := product.Get(purchaseData.ProductId); err != nil {
+					fmt.Println("Creating product instead?")
+					product = &models.Product{
+						ProductId:    purchaseData.ProductId,
+						Name:         purchaseData.ProductName,
+						URL:          purchaseData.ProductURL,
+						CurrentPrice: purchaseData.PurchasePrice,
+						ScrapedAt:    purchaseData.PurchaseAt,
+					}
+				}
+				if DB.NewRecord(product) {
+					DB.Create(product)
+				}
+
+				purchase := models.Purchase{
+					PurchasePrice:  purchaseData.PurchasePrice,
+					KickbackAmount: 0.0,
+					PurchaseAt:     purchaseData.PurchaseAt,
+					UserId:         user.Id,
+					ProductId:      product.Id,
+				}
+
+				product.Purchases = append(product.Purchases, purchase)
+				DB.Save(product)
+				DB.LogMode(false)
+			}
+			fmt.Println("Done Waiting...")
+
+		}(user)
 	}
-	fmt.Println("Waiting")
-	wg.Wait()
-	close(out)
-	for purchaseData := range out {
-		// @TODO: ADD EVERYTHING TO THE DB, YAY
-		fmt.Printf("%#v", purchaseData)
-		fmt.Println("")
-	}
-	fmt.Println("Done Waiting...")
 
 }
 

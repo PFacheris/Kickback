@@ -8,9 +8,10 @@ import (
 )
 
 type Product struct {
-	Id           string  `json:"id" binding:"required" sql:"type:size:255;not null;unique"`
-	Name         string  `json:"name" binding:"required" sql:"type:size:255;not null"`
-	URL          string  `json:"url" binding:"required" sql:"type:size:255;not null;unique"`
+	Id           int64   `json:"id"`
+	ProductId    string  `json:"productId" binding:"required" sql:"size:255;not null;unique"`
+	Name         string  `json:"name" binding:"required" sql:"size:255;not null"`
+	URL          string  `json:"url" binding:"required" sql:"size:255;not null;unique"`
 	CurrentPrice float32 `json:"current_price" sql:"type:decimal(11,2)"`
 	ScrapedAt    time.Time
 	CreatedAt    time.Time
@@ -19,7 +20,7 @@ type Product struct {
 	Purchases    []Purchase
 }
 
-func (product *Product) Get(id int64) error {
+func (product *Product) GetById(id int64) error {
 	if err := DB.First(product, id).Error; err != nil {
 		return err
 	}
@@ -31,4 +32,20 @@ func (product *Product) Get(id int64) error {
 
 	product.Purchases = purchases
 	return nil
+}
+
+func (product *Product) Get(id string) error {
+	if err := DB.Where("product_id = ?", id).First(product).Error; err != nil {
+		return err
+	}
+
+	product.GetPurchases()
+	return nil
+}
+
+func (product *Product) GetPurchases() {
+	purchases := []Purchase{}
+	DB.Where("product_id = ?", product.Id).Find(&purchases)
+
+	product.Purchases = purchases
 }

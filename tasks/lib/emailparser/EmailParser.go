@@ -64,6 +64,7 @@ func getProductID(href string) (id, link string, err error) {
 	if err != nil {
 		panic(err)
 	}
+	link = innerURL.String()
 	path := innerURL.Path
 	id = strings.Split(path, "/")[2]
 	return
