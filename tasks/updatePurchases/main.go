@@ -6,28 +6,27 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"github.com/pfacheris/kickback/config"
-	"github.com/pfacheris/kickback/models"
-	"github.com/pfacheris/kickback/tasks/lib/emailparser"
 	"io"
 	"net/http"
 	"strings"
 	"sync"
 	"time"
+
+	// App-level
+	"github.com/pfacheris/kickback/config"
+	. "github.com/pfacheris/kickback/db"
+	"github.com/pfacheris/kickback/models"
+	"github.com/pfacheris/kickback/tasks/lib/emailparser"
 )
 
-type User struct {
-	Email        string
-	AccessToken  string
-	RefreshToken string
-}
-
 func main() {
+
+	DB.AutoMigrate(models.User{})
 
 	aWeekAgo := time.Now().AddDate(0, 0, -14)
 	fmt.Println(aWeekAgo)
 
-	config := &oauth.Config{
+	oauthConfig := &oauth.Config{
 		ClientId:     config.CLIENT_ID,
 		ClientSecret: config.CLIENT_SECRET,
 		RedirectURL:  config.GOOGLE_REDIRCET_URL,
@@ -36,15 +35,27 @@ func main() {
 		TokenURL:     config.GOOGLE_TOKEN_URL,
 	}
 
-	users := make([]User, 0)
-	users = append(users, User{Email: EMAIL, AccessToken: config.ACCESS_TOKEN, RefreshToken: config.REFRESH_TOKEN})
+	users := []models.User{}
+	// users = append(users, User{Email: EMAIL, AccessToken: config.ACCESS_TOKEN, RefreshToken: config.REFRESH_TOKEN})
+	DB.Where("refresh_token != ''").Find(&users)
+
+	fmt.Println(users)
+
 	for _, user := range users {
 
 		transport := &oauth.Transport{
-			Token:     &oauth.Token{AccessToken: user.AccessToken, RefreshToken: user.RefreshToken},
-			Config:    config,
+			Token:     &oauth.Token{RefreshToken: user.RefreshToken},
+			Config:    oauthConfig,
 			Transport: http.DefaultTransport,
 		}
+
+		err := transport.Refresh()
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println("HEY")
+		fmt.Println("%#v", transport.Token)
 
 		oauthHttpClient := transport.Client()
 
