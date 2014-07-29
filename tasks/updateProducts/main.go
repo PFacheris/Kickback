@@ -29,6 +29,8 @@ func main() {
 	aDayAgo := time.Now().AddDate(0, 0, -1)
 
 	products := []models.Product{}
+	// @TODO(Shrugs) Where in set of Purchases.ProductIds that haven't been refunded
+	// @TODO(Shrugs) Where
 	DB.Where("scraped_at < ?", aDayAgo).Find(&products)
 
 	productIDs := make([]string, len(products))
@@ -58,10 +60,11 @@ func main() {
 				var product models.Product
 				DB.Where("product_id = ?", item.ASIN).First(&product)
 
-				pretty.Println(item.OfferSummary)
-				pretty.Println(item.Offers)
+				for _, offer := range item.Offers {
+					// for each offer, if one of the purchases in the DB matches ProductId and SellerName, update its CurrentSellerPrice
+					pretty.Println(offer.Merchant.Name)
+				}
 
-				// product.CurrentPrice =
 			}
 
 			// update the product price in the db

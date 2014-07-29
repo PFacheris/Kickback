@@ -79,7 +79,7 @@ func main() {
 				messages = filterBeforeID(messages, user.LastMessageId)
 			}
 
-			mostRecentMessageID := ""
+			mostRecentMessageID := user.LastMessageId
 			// make a time that's definitely last
 			mostRecentMessageTime := time.Now().AddDate(-1, 0, 0)
 
@@ -151,6 +151,7 @@ func main() {
 
 			fmt.Println("Waiting")
 			wg.Wait()
+			fmt.Println("Done Waiting...")
 			close(out)
 			for purchaseData := range out {
 				// @TODO: ADD EVERYTHING TO THE DB, YAY
@@ -158,13 +159,11 @@ func main() {
 				// grab the Product from the DB or create a new one
 				product := &models.Product{}
 				if err := product.Get(purchaseData.ProductId); err != nil {
-					fmt.Println("Creating product instead?")
 					product = &models.Product{
-						ProductId:    purchaseData.ProductId,
-						Name:         purchaseData.ProductName,
-						URL:          purchaseData.ProductURL,
-						CurrentPrice: purchaseData.PurchasePrice,
-						ScrapedAt:    purchaseData.PurchaseAt,
+						ProductId: purchaseData.ProductId,
+						Name:      purchaseData.ProductName,
+						URL:       purchaseData.ProductURL,
+						ScrapedAt: purchaseData.PurchaseAt,
 					}
 				}
 				if DB.NewRecord(product) {
@@ -172,18 +171,25 @@ func main() {
 				}
 
 				purchase := models.Purchase{
-					PurchasePrice:  purchaseData.PurchasePrice,
-					KickbackAmount: 0.0,
-					PurchaseAt:     purchaseData.PurchaseAt,
-					UserId:         user.Id,
-					ProductId:      product.Id,
+					PurchasePrice:      purchaseData.PurchasePrice,
+					KickbackAmount:     0.0,
+					PurchaseAt:         purchaseData.PurchaseAt,
+					UserId:             user.Id,
+					ProductId:          product.Id,
+					SellerName:         purchaseData.SellerName,
+					CurrentSellerPrice: purchaseData.PurchasePrice,
 				}
+
+				fmt.Println(purchaseData.SellerName)
 
 				product.Purchases = append(product.Purchases, purchase)
 				DB.Save(product)
 				DB.LogMode(false)
 			}
-			fmt.Println("Done Waiting...")
+
+			// update the user
+			user.LastMessageId = mostRecentMessageID
+			DB.Save(&user)
 
 		}(user)
 	}
@@ -195,13 +201,14 @@ func filterBeforeID(messages []*gmail.Message, lastID string) (ret []*gmail.Mess
 	if len(messages) == 0 {
 		return messages
 	}
-	lastIndex := 1
+	lastIndex := len(messages)
 	for i, msg := range messages {
 		if msg.Id == lastID {
 			lastIndex = i
+			break
 		}
 	}
-	ret = messages[0 : lastIndex-1]
+	ret = messages[0:lastIndex]
 	return ret
 }
 
