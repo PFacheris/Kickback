@@ -6,3 +6,6 @@ static_dist
 .tmp
 .sass-cache
 static_dev/bower_components
+updatePurchases
+updateProducts
+testDB

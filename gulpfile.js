@@ -114,7 +114,7 @@ gulp.task('watch', function () {
     // ]).on('change', function (file) {
     //     server.changed(file.path);
     // });
-
+    gulp.start('build');
     gulp.watch(['static_dev/styles/**/*.scss', 'static_dev/views/*.html', 'static_dev/scripts/**/*.js', 'bower.json'], ['html']);
     gulp.watch('static_dev/images/**/*', ['images']);
 });

@@ -17,7 +17,7 @@ const (
 
 type EmailParser struct{}
 
-func (e *EmailParser) Parse(ch chan models.Purchase, r io.Reader) {
+func (e *EmailParser) Parse(ch chan *models.PurchaseData, r io.Reader) {
 
 	doc, err := goquery.NewDocumentFromReader(r)
 	if err != nil {
@@ -41,20 +41,15 @@ func (e *EmailParser) Parse(ch chan models.Purchase, r io.Reader) {
 			panic(err)
 		}
 
-		product := models.Product{
-			Id:        productID,
-			Name:      name,
-			URL:       productURL,
-			ScrapedAt: time.Now().AddDate(0, 0, -7),
-		}
-
-		purchase := models.Purchase{
+		purchaseData := models.PurchaseData{
 			PurchasePrice: priceFloat,
 			PurchaseAt:    time.Now().Round(time.Hour * 24),
-			ProductId:     product.Id,
+			ProductId:     productID,
+			ProductName:   name,
+			ProductURL:    productURL,
 		}
 
-		ch <- purchase
+		ch <- &purchaseData
 	})
 	return
 }
@@ -69,6 +64,7 @@ func getProductID(href string) (id, link string, err error) {
 	if err != nil {
 		panic(err)
 	}
+	link = innerURL.String()
 	path := innerURL.Path
 	id = strings.Split(path, "/")[2]
 	return

@@ -14,5 +14,14 @@ type Purchase struct {
 	UpdatedAt      time.Time
 	DeletedAt      time.Time `json:"-"`
 	UserId         int64     `json:"-"`
-	ProductId      string    `json:"-"`
+	ProductId      int64     `json:"-"`
+}
+
+// Describes information we get from email
+type PurchaseData struct {
+	ProductId     string
+	ProductName   string
+	ProductURL    string
+	PurchasePrice float32
+	PurchaseAt    time.Time
 }
