@@ -12,6 +12,71 @@
   text-decoration: none;
 }
 
+nav {
+  position: relative;
+  height: 50px;
+
+  background: white;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      &.logo {
+        h1 {
+          color: $color4;
+          margin: 0;
+          font-size: 22px;
+          line-height: 50px;
+          @include media($mobile) {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.content-container {
+  text-align: center;
+  height: 1000px;
+  line-height: 200px;
+  position: relative;
+  background: $color4;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background: url('http://subtlepatterns.com/patterns/congruent_pentagon.png');
+    opacity: 0.25;
+  }
+
+  .page-label {
+    color: white;
+    padding: 5px;
+    border: 5px solid white;
+    border-left: none;
+    border-right: none;
+    font-size: 50px;
+    position: relative;
+  }
+
+  .current-purchases {
+    width: 50%;
+    margin: 0 10%;
+    background: white;
+    height: 500px;
+    position: relative;
+
+    
+  }
+}
+
 .contain-to-grid {
   width: 80%;
   margin: 0px 10%;
@@ -55,22 +120,11 @@
     @include radial-gradient(center, ellipse cover, rgba(168,203,126,0.8) 0%, rgba(148,205,129,0.8) 25%, rgba(132,207,136,0.85) 50%, rgba(135,209,161,0.95) 75%, rgba(138,212,186,1) 100%);
   }
 
-  .call-to-action-header {
-    padding: 0;
-    height: 50px;
-    list-style: none;
-    position: relative;
+  nav {
+    background: none;
 
-    .call-to-action-logo {
-      h1 {
-        color: white;
-        margin: 0;
-        font-size: 22px;
-        line-height: 50px;
-        @include media($mobile) {
-          font-size: 18px;
-        }
-      }
+    .logo > h1 {
+      color: white;
     }
   }
 
