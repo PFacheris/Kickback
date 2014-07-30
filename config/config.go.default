@@ -1,11 +1,19 @@
 package config
 
 const (
-    MY_VAR = "YAY"
+    EMAIL = ""
+    ACCESS_TOKEN = ""
+    REFRESH_TOKEN = ""
+    AMAZON_QUERY = ""
+    LAST_MESSAGE_ID = ""
     CLIENT_ID = ""
     CLIENT_SECRET = ""
     GOOGLE_REDIRCET_URL = ""
     GOOGLE_API_SCOPE = ""
     GOOGLE_AUTH_URL = ""
     GOOGLE_TOKEN_URL = ""
+    AMAZON_SECRET_KEY = ""
+    AMAZON_ACCESS_KEY = ""
+    AMAZON_ASSOCIATE_TAG = ""
+    KICKBACK_THRESHOLD = ""
 )
