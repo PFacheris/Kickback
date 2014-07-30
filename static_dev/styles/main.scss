@@ -2,93 +2,11 @@
 
 @import "../bower_components/bourbon/dist/bourbon";
 @import "../bower_components/neat/app/assets/stylesheets/neat";
-// @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
-
-*, p, a, h1, h2, h3, h4, h5, h6, span {
-  font-family: 'Lato', sans-serif;
-  text-decoration: none;
-}
-
-nav {
-  position: relative;
-  height: 50px;
-
-  background: white;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      &.logo {
-        h1 {
-          color: $color4;
-          margin: 0;
-          font-size: 22px;
-          line-height: 50px;
-          @include media($mobile) {
-            font-size: 18px;
-          }
-        }
-      }
-    }
-  }
-}
-
-.content-container {
-  text-align: center;
-  height: 1000px;
-  line-height: 200px;
-  position: relative;
-  background: $color4;
-
-  &:before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    background: url('http://subtlepatterns.com/patterns/congruent_pentagon.png');
-    opacity: 0.25;
-  }
-
-  .page-label {
-    color: white;
-    padding: 5px;
-    border: 5px solid white;
-    border-left: none;
-    border-right: none;
-    font-size: 50px;
-    position: relative;
-  }
-
-  .current-purchases {
-    width: 50%;
-    margin: 0 10%;
-    background: white;
-    height: 500px;
-    position: relative;
-
-    
-  }
-}
-
-.contain-to-grid {
-  width: 80%;
-  margin: 0px 10%;
-  @include media($mobile) {
-    width: 90%;
-    margin: 0px 5%;
-  }
-  @include media($tablet) {
-    width: 90%;
-    margin: 0px 5%;
-  }
-}
+@import "general";
+@import "dashboard";
 
 .call-to-action-container {
   position: relative;
@@ -254,7 +172,7 @@ nav {
   }
 
   .call-to-action-footer {
-    background: white;
+    background: #f5f5f5;
     position: relative;
     top: 175px;
     z-index: 2;
@@ -318,7 +236,7 @@ nav {
 .dashboard-explanation-container {
   height: 500px;
   width: 100%;
-  background: #738E86;
+  background: $neutral-color;
   position: relative;
   top: 175px;
 

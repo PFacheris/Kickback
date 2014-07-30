@@ -33,10 +33,55 @@
       </li>
     </ul>
   </nav>
-  <div class="content-container">
-    <span class="page-label">DASHBOARD</span>
-    <div class="current-purchases">
+  <div class="content">
+    <!-- Begin Current Purchases -->
+    <div class="dashboard-item current-purchases">
+      <div class="dashboard-item-header">
+        <span>Current Purchases</span>
+      </div>
+      <div class="dashboard-item-subheader">
+        <div class="nav-left">
+          <i class="icon-left-open-big"></i>
+        </div>
+        <div class="nav-right">
+          <i class="icon-right-open-big"></i>
+        </div>
+      </div>
+      <ul class="purchases">
+        <li class="purchase row">
+          <div class="small-4-columns product-thumb">
+            <img src="http://placekitten.com/g/150/150" />
+          </div>
+          <div class="small-4-columns">
+            <div class="time-remaining">
 
+            </div>
+          </div>
+          <div class="small-4-columns">
+            <div class="change-arrow"></div>
+            <span class="delta">$1.25</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- Begin Total Saved  -->
+    <div class="dashboard-item current-savings">
+      <div class="dashboard-item-header">
+        <span>Total Savings</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="savings-chart" width="400" height="400"></canvas>
+        <div class="inner-chart-container">
+          <div class="total-saved">
+            <span class="currency">$</span><span class="amount">5.23</span>
+            <p class="label">Saved</p>
+          </div>
+          <div class="total-spent">
+            <span class="currency">$</span><span class="amount">350.98</span>
+            <p class="label">Spent</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -44,10 +89,12 @@
   <!-- bower:js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/modernizr/modernizr.js"></script>
+  <script src="bower_components/chartjs/Chart.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
-  <!-- build:js scripts/main.js -->
+  <!-- build:js scripts/dashboard.js -->
+  <script src="scripts/dashboard.js"></script>
   <!-- endbuild -->
 </body>
 </html>

@@ -4,7 +4,8 @@
   "dependencies": {
     "modernizr": "~2.6.2",
     "jquery": "~1.11.0",
-    "normalize-css": "~3.0.1"
+    "normalize-css": "~3.0.1",
+    "chartjs": "~0.2.0"
   },
   "devDependencies": {
     "bourbon": "~4.0.2",
