@@ -1,0 +1,53 @@
+body {
+  background: $background-color;
+}
+
+*, p, a, h1, h2, h3, h4, h5, h6, span {
+  font-family: 'Lato', sans-serif;
+  text-decoration: none;
+}
+
+nav {
+  position: relative;
+  height: 50px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      &.logo {
+        h1 {
+          color: $color4;
+          margin: 0;
+          font-size: 22px;
+          line-height: 50px;
+          @include media($mobile) {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.contain-to-grid {
+  width: 80%;
+  margin: 0px 10%;
+  @include media($mobile) {
+    width: 90%;
+    margin: 0px 5%;
+  }
+  @include media($tablet) {
+    width: 90%;
+    margin: 0px 5%;
+  }
+}
+
+.row {
+  @include outer-container;
+  .small-4-columns {
+    @include span-columns(4);
+  }
+}

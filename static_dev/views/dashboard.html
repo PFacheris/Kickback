@@ -1,0 +1,100 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>Kickback</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/icons.css">
+  <!-- endbuild -->
+
+  <!-- build:js scripts/vendor/modernizr.js -->
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild -->
+</head>
+<body>
+  <!--[if lt IE 10]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <nav class="nav-bar">
+    <ul class="contain-to-grid">
+      <li class="logo">
+        <h1>Kickback</h1>
+      </li>
+    </ul>
+  </nav>
+  <div class="content">
+    <!-- Begin Current Purchases -->
+    <div class="dashboard-item current-purchases">
+      <div class="dashboard-item-header">
+        <span>Current Purchases</span>
+      </div>
+      <div class="dashboard-item-subheader">
+        <div class="nav-left">
+          <i class="icon-left-open-big"></i>
+        </div>
+        <div class="nav-right">
+          <i class="icon-right-open-big"></i>
+        </div>
+      </div>
+      <ul class="purchases">
+        <li class="purchase row">
+          <div class="small-4-columns product-thumb">
+            <img src="http://placekitten.com/g/150/150" />
+          </div>
+          <div class="small-4-columns">
+            <div class="time-remaining">
+
+            </div>
+          </div>
+          <div class="small-4-columns">
+            <div class="change-arrow"></div>
+            <span class="delta">$1.25</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- Begin Total Saved  -->
+    <div class="dashboard-item current-savings">
+      <div class="dashboard-item-header">
+        <span>Total Savings</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="savings-chart" width="400" height="400"></canvas>
+        <div class="inner-chart-container">
+          <div class="total-saved">
+            <span class="currency">$</span><span class="amount">5.23</span>
+            <p class="label">Saved</p>
+          </div>
+          <div class="total-spent">
+            <span class="currency">$</span><span class="amount">350.98</span>
+            <p class="label">Spent</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <script src="bower_components/chartjs/Chart.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js scripts/dashboard.js -->
+  <script src="scripts/dashboard.js"></script>
+  <!-- endbuild -->
+</body>
+</html>

@@ -2,28 +2,11 @@
 
 @import "../bower_components/bourbon/dist/bourbon";
 @import "../bower_components/neat/app/assets/stylesheets/neat";
-// @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
-
-*, p, a, h1, h2, h3, h4, h5, h6, span {
-  font-family: 'Lato', sans-serif;
-  text-decoration: none;
-}
-
-.contain-to-grid {
-  width: 80%;
-  margin: 0px 10%;
-  @include media($mobile) {
-    width: 90%;
-    margin: 0px 5%;
-  }
-  @include media($tablet) {
-    width: 90%;
-    margin: 0px 5%;
-  }
-}
+@import "general";
+@import "dashboard";
 
 .call-to-action-container {
   position: relative;
@@ -55,22 +38,11 @@
     @include radial-gradient(center, ellipse cover, rgba(168,203,126,0.8) 0%, rgba(148,205,129,0.8) 25%, rgba(132,207,136,0.85) 50%, rgba(135,209,161,0.95) 75%, rgba(138,212,186,1) 100%);
   }
 
-  .call-to-action-header {
-    padding: 0;
-    height: 50px;
-    list-style: none;
-    position: relative;
+  nav {
+    background: none;
 
-    .call-to-action-logo {
-      h1 {
-        color: white;
-        margin: 0;
-        font-size: 22px;
-        line-height: 50px;
-        @include media($mobile) {
-          font-size: 18px;
-        }
-      }
+    .logo > h1 {
+      color: white;
     }
   }
 
@@ -200,7 +172,7 @@
   }
 
   .call-to-action-footer {
-    background: white;
+    background: #f5f5f5;
     position: relative;
     top: 175px;
     z-index: 2;
@@ -264,7 +236,7 @@
 .dashboard-explanation-container {
   height: 500px;
   width: 100%;
-  background: #738E86;
+  background: $neutral-color;
   position: relative;
   top: 175px;
 

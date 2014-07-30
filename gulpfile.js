@@ -10,9 +10,9 @@ gulp.task('styles', function () {
     return gulp.src('static_dev/styles/main.scss')
         .pipe($.rubySass({
             style: 'expanded',
-            precision: 10
+            precision: 10,
+            loadPath: ['static_dev/styles']
         }))
-        // .pipe($.autoprefixer('last 1 version'))
         .pipe(gulp.dest('.tmp/styles'))
         .pipe($.size());
 });
@@ -98,7 +98,7 @@ gulp.task('wiredep', function () {
         .pipe(wiredep({
             directory: 'static_dev/bower_components'
         }))
-        .pipe(gulp.dest('static_dev'));
+        .pipe(gulp.dest('.tmp/views'));
 });
 
 gulp.task('watch', function () {
