@@ -178,6 +178,7 @@ func main() {
 					ProductId:          product.Id,
 					SellerName:         purchaseData.SellerName,
 					CurrentSellerPrice: purchaseData.PurchasePrice,
+					WasKickbacked:      false,
 				}
 
 				fmt.Println(purchaseData.SellerName)

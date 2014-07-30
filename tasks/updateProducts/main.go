@@ -69,21 +69,15 @@ func main() {
 						fmt.Println("NO GOOD PURCHASES, IGNORE")
 						continue
 					}
-
 					// now we have purchase, update price and kickback amount
 					purchase.CurrentSellerPrice = float32(offer.OfferListing.Price.Amount) / float32(100)
 					purchase.KickbackAmount = purchase.PurchasePrice - purchase.CurrentSellerPrice
 					DB.Save(&purchase)
+
 				}
+				DB.Save(&thisProduct)
 
 			}
-
-			// update the product price in the db
-			// now for every product, get purchases
-			// for each purchase
-			// KickbackAmount = originalPrice - currentPrice
-			// if KickbackAmount is posistive, yay, schedule an email and mark as kickbacked
-			// else, do nothing
 
 		}(someProducts, &wg)
 	}

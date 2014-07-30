@@ -49,3 +49,10 @@ func (user *User) Get(id int64) error {
 	user.Purchases = purchases
 	return nil
 }
+
+func (user *User) GetPurchases() {
+	purchases := []Purchase{}
+	DB.Where("user_id = ?", user.Id).Find(&purchases)
+
+	user.Purchases = purchases
+}
