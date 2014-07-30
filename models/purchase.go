@@ -17,6 +17,7 @@ type Purchase struct {
 	ProductId          int64     `json:"-"`
 	SellerName         string    `json:"seller_name"`
 	CurrentSellerPrice float32   `json:"current_price" binding:"required" sql:"type:decimal(11,2);not null"`
+	WasKickbacked      bool      `json:"was_kickbacked"`
 }
 
 // Describes information we get from email
