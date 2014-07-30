@@ -39,6 +39,10 @@ func (e *EmailParser) Parse(ch chan *models.PurchaseData, r io.Reader) {
 		sellerA := a.NextAllFiltered("a").First()
 		fmt.Println(sellerA)
 		sellerName := sellerA.Text()
+		if sellerName == "" {
+			// @TODO(Shrugs) make sure that this is changed based on region and stuff
+			sellerName = "Amazon.com"
+		}
 
 		priceStr := s.SiblingsFiltered(PRICE_SEL).First().Text()
 		priceSlice := strings.Trim(priceStr, " ")[1:]
@@ -76,10 +80,6 @@ func getProductID(href string) (id, link string, err error) {
 	link = innerURL.String()
 	path := innerURL.Path
 	id = strings.Split(path, "/")[2]
-	if id == "" {
-		// @TODO(Shrugs) make sure that this is changed based on region and stuff
-		id = "Amazon.com"
-	}
 	return
 }
 

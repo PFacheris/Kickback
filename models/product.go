@@ -8,15 +8,16 @@ import (
 )
 
 type Product struct {
-	Id        int64  `json:"id"`
-	ProductId string `json:"productId" binding:"required" sql:"size:255;not null;unique"`
-	Name      string `json:"name" binding:"required" sql:"size:255;not null"`
-	URL       string `json:"url" binding:"required" sql:"size:255;not null;unique"`
-	ScrapedAt time.Time
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt time.Time `json:"-"`
-	Purchases []Purchase
+	Id            int64  `json:"id"`
+	ProductId     string `json:"productId" binding:"required" sql:"size:255;not null;unique"`
+	Name          string `json:"name" binding:"required" sql:"size:255;not null"`
+	URL           string `json:"url" binding:"required" sql:"size:255;not null;unique"`
+	ScrapedAt     time.Time
+	CreatedAt     time.Time
+	UpdatedAt     time.Time
+	DeletedAt     time.Time `json:"-"`
+	Purchases     []Purchase
+	SmallImageURL string
 }
 
 func (product *Product) GetById(id int64) error {

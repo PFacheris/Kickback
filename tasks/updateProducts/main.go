@@ -4,7 +4,6 @@ import (
 	"encoding/xml"
 	"fmt"
 	"github.com/Shrugs/goaws/productadvertising/v1"
-	"github.com/kr/pretty"
 	"math"
 	"sync"
 	"time"
@@ -27,11 +26,12 @@ func main() {
 
 	// grab all of the products who's ScrapedAt date is older than a day ago
 	aDayAgo := time.Now().AddDate(0, 0, -1)
+	aWeekAgo := time.Now().AddDate(0, 0, -7)
 
 	products := []models.Product{}
-	// @TODO(Shrugs) Where in set of Purchases.ProductIds that haven't been refunded
-	// @TODO(Shrugs) Where
-	DB.Where("scraped_at < ?", aDayAgo).Find(&products)
+
+	// lol, fuck this ORM bullshit
+	DB.Raw("SELECT products.id, products.product_id, name, u_r_l, scraped_at, products.created_at, products.updated_at, products.deleted_at FROM products JOIN purchases ON products.id=purchases.product_id WHERE purchases.purchase_at > ? AND scraped_at < ? AND kickback_amount < ?", aWeekAgo, aDayAgo, config.KICKBACK_THRESHOLD).Scan(&products)
 
 	productIDs := make([]string, len(products))
 	for _, product := range products {
@@ -57,12 +57,23 @@ func main() {
 			xml.Unmarshal([]byte(result), &response)
 
 			for _, item := range response.Items {
-				var product models.Product
-				DB.Where("product_id = ?", item.ASIN).First(&product)
-
+				var thisProduct models.Product
+				DB.Where("product_id = ?", item.ASIN).First(&thisProduct)
+				thisProduct.SmallImageURL = item.SmallImage.URL
 				for _, offer := range item.Offers {
 					// for each offer, if one of the purchases in the DB matches ProductId and SellerName, update its CurrentSellerPrice
-					pretty.Println(offer.Merchant.Name)
+					var purchase models.Purchase
+					query := DB.Where("product_id = ?", thisProduct.Id).Where("seller_name = ?", offer.Merchant.Name).Find(&purchase)
+
+					if query.Error != nil {
+						fmt.Println("NO GOOD PURCHASES, IGNORE")
+						continue
+					}
+
+					// now we have purchase, update price and kickback amount
+					purchase.CurrentSellerPrice = float32(offer.OfferListing.Price.Amount) / float32(100)
+					purchase.KickbackAmount = purchase.PurchasePrice - purchase.CurrentSellerPrice
+					DB.Save(&purchase)
 				}
 
 			}
