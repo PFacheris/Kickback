@@ -31,7 +31,9 @@ func main() {
 	products := []models.Product{}
 
 	// lol, fuck this ORM bullshit
-	DB.Raw("SELECT products.id, products.product_id, name, u_r_l, scraped_at, products.created_at, products.updated_at, products.deleted_at FROM products JOIN purchases ON products.id=purchases.product_id WHERE purchases.purchase_at > ? AND scraped_at < ? AND kickback_amount < ?", aWeekAgo, aDayAgo, config.KICKBACK_THRESHOLD).Scan(&products)
+
+	// @TODO(Shrugs) remove the part about only Amazon.com
+	DB.Raw("SELECT products.id, products.product_id, name, u_r_l, scraped_at, products.created_at, products.updated_at, products.deleted_at FROM products JOIN purchases ON products.id=purchases.product_id WHERE purchases.purchase_at > ? AND scraped_at < ? AND kickback_amount < ? AND purchases.seller_name='Amazon.com'", aWeekAgo, aDayAgo, config.KICKBACK_THRESHOLD).Scan(&products)
 
 	productIDs := make([]string, len(products))
 	for _, product := range products {
