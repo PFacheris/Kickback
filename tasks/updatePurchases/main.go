@@ -138,7 +138,7 @@ func main() {
 							r, _ := base64.URLEncoding.DecodeString(b64body)
 							return strings.NewReader(string(r[:])), err
 						}
-						pretty.Println(string(r[:]))
+						pretty.Println(r)
 						return strings.NewReader(""), errors.New("NO EMAIL BODY???")
 					}()
 
