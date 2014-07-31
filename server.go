@@ -2,6 +2,9 @@ package main
 
 import (
 	golangoauth2 "github.com/golang/oauth2"
+
+	// "github.com/pfacheris/kickback/tasks/lib/kickbackemailer"
+
 	"strings"
 	// External Packages
 	"errors"
@@ -55,6 +58,12 @@ func main() {
 
 	r.Get("/users/:id", userController.Read)
 	r.Post("/users", binding.Json(User{}), userController.Create)
+
+	// r.Post("/mailgunget", binding.Json(kickbackemailer.MailgunResponse{}), func(mg kickbackemailer.MailgunResponse, res http.ResponseWriter, req *http.Request) string {
+	// 	// fmt.Println(req.Body)
+	// 	pretty.Println(mg)
+	// 	return fmt.Sprint(pretty.Formatter(mg))
+	// })
 
 	r.NotFound(func(r render.Render) {
 		controllers.HandleError("html", 404, errors.New("Page not found."), r)
