@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"github.com/kr/pretty"
 	"io"
 	"net/http"
 	"strings"
@@ -122,7 +123,9 @@ func main() {
 								for _, p := range part.Parts {
 									headerMap := mapFromHeaders(p.Headers)
 									val, ok := headerMap["Content-Type"]
-									if ok && strings.Index(val, "text/html") != -1 {
+									if ok &&
+										strings.Index(val, "text/html") != -1 &&
+										len(p.Body.Data) > 0 {
 										// yay
 										return p.Body.Data
 									}
@@ -135,7 +138,7 @@ func main() {
 							r, _ := base64.URLEncoding.DecodeString(b64body)
 							return strings.NewReader(string(r[:])), err
 						}
-
+						pretty.Println(string(r[:]))
 						return strings.NewReader(""), errors.New("NO EMAIL BODY???")
 					}()
 
@@ -154,8 +157,7 @@ func main() {
 			fmt.Println("Done Waiting...")
 			close(out)
 			for purchaseData := range out {
-				// @TODO: ADD EVERYTHING TO THE DB, YAY
-				// DB.LogMode(true)
+
 				// grab the Product from the DB or create a new one
 				product := &models.Product{}
 				if err := product.Get(purchaseData.ProductId); err != nil {
