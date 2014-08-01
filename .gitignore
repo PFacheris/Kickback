@@ -8,4 +8,5 @@ static_dist
 static_dev/bower_components
 updatePurchases
 updateProducts
+checkForKickback
 testDB
