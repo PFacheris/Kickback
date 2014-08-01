@@ -10,14 +10,14 @@ import (
 )
 
 type User struct {
-	Id            int64  `json:"id"`
-	Email         string `json:"email" binding:"required" sql:"size:255;not null;unique"`
-	LastMessageId string `json:"last_message_id" sql:"size:255"`
-	RefreshToken  string `json:"-" binding:"required" sql:"size:255"`
-	CreatedAt     time.Time
-	UpdatedAt     time.Time
-	DeletedAt     time.Time `json:"-"`
-	Purchases     []Purchase
+	Id            int64      `json:"id"`
+	Email         string     `json:"email" binding:"required" sql:"size:255;not null;unique"`
+	LastMessageId string     `json:"last_message_id" sql:"size:255"`
+	RefreshToken  string     `json:"-" binding:"required" sql:"size:255"`
+	CreatedAt     time.Time  `json:"created_at"`
+	UpdatedAt     time.Time  `json:"updated_at"`
+	DeletedAt     time.Time  `json:"-"`
+	Purchases     []Purchase `json:"purchases"`
 }
 
 // This method implements binding.Validator and is executed by the binding.Validate middleware
@@ -41,18 +41,19 @@ func (user *User) Get(id int64) error {
 		return err
 	}
 
-	purchases := []Purchase{}
-	if err := DB.Model(user).Related(&purchases).Error; err != nil {
-		return err
-	}
+	user.GetPurchases()
 
-	user.Purchases = purchases
 	return nil
 }
 
 func (user *User) GetPurchases() {
 	purchases := []Purchase{}
 	DB.Where("user_id = ?", user.Id).Find(&purchases)
+
+	for i, p := range purchases {
+		(&p).getProduct()
+		purchases[i] = p
+	}
 
 	user.Purchases = purchases
 }
