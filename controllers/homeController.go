@@ -1,7 +1,8 @@
 package controllers
 
 import (
-	"fmt"
+	"github.com/pfacheris/kickback/tasks/lib/updatePurchaseForUser"
+
 	// External Packages
 	"encoding/json"
 	"github.com/jinzhu/gorm"
@@ -38,8 +39,6 @@ func (controller HomeController) Dashboard(tokens oauth2.Tokens, r render.Render
 			return
 		}
 		// User did not previously exist, create it
-		fmt.Println(tokens.Refresh())
-		fmt.Println(tokens.Access())
 		user = User{
 			Email:        email,
 			RefreshToken: tokens.Refresh(),
@@ -49,12 +48,9 @@ func (controller HomeController) Dashboard(tokens oauth2.Tokens, r render.Render
 			HandleError("html", 500, err, r)
 			return
 		}
-
-		// User created, render success page
-		r.HTML(200, "dashboard", nil)
-		return
 	}
 	// User previously existed, render success page
+	updatePurchaseForUser.Do(&user)
 	r.HTML(200, "dashboard", nil)
 }
 

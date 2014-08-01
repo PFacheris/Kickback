@@ -46,7 +46,7 @@ func (controller UserController) Read(res http.ResponseWriter, r render.Render, 
 	}
 
 	// Read From DB
-	user := User{}
+	user := &User{}
 	if err = user.Get(id); err != nil {
 		HandleError("json", 404, err, r)
 		return

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/Shrugs/goaws/productadvertising/v1"
 	"math"
+	"os/exec"
 	"sync"
 	"time"
 
@@ -86,6 +87,11 @@ func main() {
 	fmt.Println("Waiting...")
 	wg.Wait()
 	fmt.Println("Done...")
+	out, err := exec.Command("checkForKickback").Output()
+	fmt.Println(string(out))
+	if err != nil {
+		panic(err)
+	}
 }
 
 func splitSlice(ids []string, idsPerSplit int) (ret [][]string) {
