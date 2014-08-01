@@ -132,7 +132,8 @@ func Do(user *models.User) {
 			}()
 
 			if err != nil {
-				panic(err)
+				// panic(err)
+				return
 			}
 			ep := emailparser.EmailParser{}
 			ep.Parse(out, bodyReader)
