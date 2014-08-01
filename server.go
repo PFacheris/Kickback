@@ -51,7 +51,8 @@ func main() {
 	homeController := controllers.HomeController{}
 	userController := controllers.UserController{}
 
-	r.Get("/", homeController.Index)
+	r.Get("/", homeController.Landing)
+	r.Get("/dashboard", homeController.Dashboard)
 
 	r.Get("/users/:id", userController.Read)
 	r.Post("/users", binding.Json(User{}), userController.Create)

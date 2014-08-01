@@ -19,12 +19,20 @@ nav {
     li {
       &.logo {
         h1 {
+          float: left;
           color: $color4;
           margin: 0;
           font-size: 22px;
           line-height: 50px;
           @include media($mobile) {
             font-size: 18px;
+          }
+
+          &.logout {
+            float: right;
+            a {
+              color: $color4;
+            }
           }
         }
       }
@@ -49,5 +57,8 @@ nav {
   @include outer-container;
   .small-4-columns {
     @include span-columns(4);
+  }
+  .small-8-columns {
+    @include span-columns(8);
   }
 }

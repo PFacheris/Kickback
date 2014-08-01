@@ -13,7 +13,7 @@
     float: left;
     background: white;
     position: relative;
-
+    margin-bottom: 1%;
 
     .dashboard-item-header {
       background: $neutral-color;
@@ -51,12 +51,13 @@
     &.current-purchases {
       width: 59.5%;
       margin-right: .5%;
+      color: $neutral-color;
       @include media($mobile) {
         width: 100%;
-        margin: 0px;
       }
 
       .purchases {
+        height: 100px;
         padding: 0;
         list-style: none;
         margin: 0;
@@ -70,7 +71,49 @@
           .product-thumb {
             text-align: left;
             img {
-              width: 40%;
+              height: 100px;
+            }
+          }
+        }
+
+        .time-remaining {
+          text-align: left;
+
+          .countdown-bar-container {
+            padding: 5px 0;
+            position: relative;
+            width: 70%;
+            height: 50%;
+            margin-top: 25%;
+            border-left: 1px solid rgba(0,0,0,.15);
+            border-right: 1px solid rgba(0,0,0,.15);
+
+            .countdown-bar {
+              height: 20px;
+              width: 70%;
+              background: #FF9900;
+            }
+          }
+        }
+
+        .price-difference {
+          text-align: right;
+
+          .change-arrow {
+            position: relative;
+            top: -4px;
+            font-size: 40px;
+            text-shadow: 0px 8px 0px $neutral-color;
+
+
+          }
+
+          .delta {
+            font-size: 20px;
+            line-height: 100px;
+            .currency {
+              font-size: 16px;
+              font-weight: 300;
             }
           }
         }
@@ -83,7 +126,6 @@
       margin-left: .5%;
       @include media($mobile) {
         width: 100%;
-        margin: 0px;
       }
 
       .chart-container {
@@ -96,47 +138,124 @@
         }
 
         .inner-chart-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          padding: 25px;
+
+          .total-saved {
+            width: 25%;
+            word-wrap: break-word;
+            text-align: right;
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 25px;
+            top: 25%;
+            left: 25%;
+          }
 
-            .total-saved {
-              width: 25%;
-              word-wrap: break-word;
-              text-align: right;
-              position: absolute;
-              top: 25%;
-              left: 25%;
-            }
+          .total-spent {
+            width: 25%;
+            word-wrap: break-word;
+            text-align: right;
+            position: absolute;
+            bottom: 30%;
+            right: 30%;
+          }
 
-            .total-spent {
-              width: 25%;
-              word-wrap: break-word;
-              text-align: right;
-              position: absolute;
-              bottom: 30%;
-              right: 30%;
-            }
-
-            .currency {
-              font-weight: 300;
-              color: $neutral-color;
-            }
-            .amount {
-              font-weight: 700;
-              color: $neutral-color;
-            }
-            .label {
-              font-weight: 300;
-              font-size: 18px;
-              margin: 0;
-              color: lighten($neutral-color, 15%);
-            }
+          .currency {
+            font-weight: 300;
+            color: $neutral-color;
+          }
+          .amount {
+            font-weight: 700;
+            color: $neutral-color;
+          }
+          .label {
+            font-weight: 300;
+            font-size: 18px;
+            margin: 0;
+            color: lighten($neutral-color, 15%);
+          }
         }
       }
+    }
+
+    &.kickbacked-purchases {
+      width: 39.5%;
+      margin-right: .5%;
+      color: $neutral-color;
+      @include media($mobile) {
+        width: 100%;
+      }
+
+      .purchases {
+        height: 100px;
+        padding: 0;
+        list-style: none;
+        margin: 0;
+
+        & > .purchase {
+          padding: 5px;
+          &:not(:last-child) {
+            border-bottom: 1px solid rgba(0,0,0,.15);
+          }
+
+          .product-thumb {
+            text-align: left;
+            img {
+              height: 100px;
+            }
+          }
+
+          .kickback-amount {
+            text-align: right;
+
+            .delta {
+              font-size: 20px;
+              line-height: 100px;
+              .currency {
+                font-size: 16px;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.breakdown {
+
+      width: 59.5%;
+      margin-left: .5%;
+      @include media($mobile) {
+        width: 100%;
+      }
+
+      .dashboard-item-alt-subheader {
+        font-size: 18px;
+        font-weight: 300;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+
+        .breakdown-label-spent {
+          color: rgba(255, 145, 0, 1);
+        }
+        .breakdown-label-saved {
+          color: rgba(138, 211, 159, 1);
+        }
+      }
+
+      #breakdown-chart {
+        height: 100% !important;
+        width: 100% !important;
+        padding: 25px;
+      }
+    }
+
+    &.limits-refs {
+      width: 100%;
     }
   }
 }

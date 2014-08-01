@@ -30,6 +30,7 @@
     <ul class="contain-to-grid">
       <li class="logo">
         <h1>Kickback</h1>
+        <h1 class="logout"><a class="icon-logout" href="/logout"></a></h1>
       </li>
     </ul>
   </nav>
@@ -52,14 +53,15 @@
           <div class="small-4-columns product-thumb">
             <img src="http://placekitten.com/g/150/150" />
           </div>
-          <div class="small-4-columns">
-            <div class="time-remaining">
-
+          <div class="small-4-columns time-remaining">
+            <div class="countdown-bar-container">
+              <div class="countdown-bar"></div>
             </div>
+            <span class="countdown-text">3 Days, 2 Hours</span>
           </div>
-          <div class="small-4-columns">
-            <div class="change-arrow"></div>
-            <span class="delta">$1.25</span>
+          <div class="small-4-columns price-difference">
+            <i class="icon-up-open-big change-arrow"></i>
+            <span class="delta"><span class="currency">$</span>1.25</span>
           </div>
         </li>
       </ul>
@@ -73,17 +75,60 @@
         <canvas id="savings-chart" width="400" height="400"></canvas>
         <div class="inner-chart-container">
           <div class="total-saved">
-            <span class="currency">$</span><span class="amount">5.23</span>
+            <span class="currency">$</span><span class="amount"></span>
             <p class="label">Saved</p>
           </div>
           <div class="total-spent">
-            <span class="currency">$</span><span class="amount">350.98</span>
+            <span class="currency">$</span><span class="amount"></span>
             <p class="label">Spent</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    <!-- Begin Kickbacks -->
+    <div class="dashboard-item kickbacked-purchases">
+      <div class="dashboard-item-header">
+        <span>Your Kickbacks</span>
+      </div>
+      <div class="dashboard-item-subheader">
+        <div class="nav-left">
+          <i class="icon-left-open-big"></i>
+        </div>
+        <div class="nav-right">
+          <i class="icon-right-open-big"></i>
+        </div>
+      </div>
+      <ul class="purchases">
+        <li class="purchase row">
+          <div class="small-4-columns product-thumb">
+            <img src="http://placekitten.com/g/150/150" />
+          </div>
+          <div class="small-4-columns purchase-date"></div>
+          <div class="small-8-columns kickback-amount">
+            <span class="delta"><span class="currency">$</span>1.25</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="dashboard-item breakdown">
+      <div class="dashboard-item-header">
+        <span>Daily Breakdown</span>
+      </div>
+      <div class="dashboard-item-subheader">
+        <div class="nav-left">
+          <i class="icon-left-open-big"></i>
+        </div>
+        <div class="nav-right">
+          <i class="icon-right-open-big"></i>
+        </div>
+      </div>
+      <!-- <div class="dashboard-item-alt-subheader">
+        <span class="breakdown-label-spent">Spent</span>
+        <span> &#8212; </span>
+        <span class="breakdown-label-saved">Saved</span>
+      </div> -->
+      <canvas id="breakdown-chart" width="1240" height="800"></canvas>
+    </div>
 
   <!-- build:js scripts/vendor.js -->
   <!-- bower:js -->

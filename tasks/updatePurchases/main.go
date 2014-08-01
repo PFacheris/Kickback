@@ -124,7 +124,7 @@ func main() {
 									headerMap := mapFromHeaders(p.Headers)
 									val, ok := headerMap["Content-Type"]
 									if ok &&
-										strings.Index(val, "text/html") != -1 &&
+										strings.Index(val, "text/plain") != -1 &&
 										len(p.Body.Data) > 0 {
 										// yay
 										return p.Body.Data

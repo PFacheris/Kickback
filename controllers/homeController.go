@@ -22,14 +22,7 @@ type userInfo struct {
 	VerifiedEmail bool   `json:"verified_email"`
 }
 
-func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
-	if tokens.IsExpired() {
-		// User is not logged in
-		// Render Landing Page HTML
-		r.HTML(200, "landing", nil)
-		return
-	}
-
+func (controller HomeController) Dashboard(tokens oauth2.Tokens, r render.Render) {
 	// Check if the user already exists
 	email, err := getCurrentUserEmail(tokens.Access())
 	if err != nil {
@@ -63,6 +56,16 @@ func (controller HomeController) Index(tokens oauth2.Tokens, r render.Render) {
 	}
 	// User previously existed, render success page
 	r.HTML(200, "dashboard", nil)
+}
+
+func (controller HomeController) Landing(tokens oauth2.Tokens, r render.Render) {
+	if !tokens.IsExpired() {
+		// User is logged in, redirect to dashboard.
+		r.Redirect("/dashboard")
+		return
+	}
+
+	r.HTML(200, "landing", nil)
 }
 
 // Utility Functions
