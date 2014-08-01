@@ -8,6 +8,48 @@
 @import "general";
 @import "dashboard";
 
+.call-to-action-btn {
+  box-sizing: content-box;
+  position: relative;
+  display: block;
+  background: none;
+  border: 3px solid white;
+  border-radius: 3px;
+  width: 175px;
+  height: 40px;
+  line-height: 40px;
+  padding: 5px;
+  color: white;
+  margin:0 auto;
+  text-decoration: none;
+  overflow: hidden;
+  @include transition-property(background, color, border-color);
+  @include transition-duration(.2s);
+
+  i {
+    position: absolute;
+    right: -175px;
+    @include transition-property(right);
+    @include transition-duration(.5s);
+  }
+
+  &:hover {
+    background: rgba(0,0,0,.1);
+    i {
+      right: 10px;
+    }
+  }
+
+  &:active {
+    color: rgba(0,0,0,.2);
+    border-color: rgba(0,0,0,.2);
+    background: rgba(0,0,0,.1);
+    i {
+      right: 10px;
+    }
+  }
+}
+
 .call-to-action-container {
   position: relative;
   width: 100%;
@@ -106,48 +148,6 @@
         font-size: 16px;
       }
     }
-
-    .call-to-action-btn {
-      box-sizing: content-box;
-      position: relative;
-      display: block;
-      background: none;
-      border: 3px solid white;
-      border-radius: 3px;
-      width: 175px;
-      height: 40px;
-      line-height: 40px;
-      padding: 5px;
-      color: white;
-      margin:0 auto;
-      text-decoration: none;
-      overflow: hidden;
-      @include transition-property(background, color, border-color);
-      @include transition-duration(.2s);
-
-      i {
-        position: absolute;
-        right: -175px;
-        @include transition-property(right);
-        @include transition-duration(.5s);
-      }
-
-      &:hover {
-        background: rgba(0,0,0,.1);
-        i {
-          right: 10px;
-        }
-      }
-
-      &:active {
-        color: rgba(0,0,0,.2);
-        border-color: rgba(0,0,0,.2);
-        background: rgba(0,0,0,.1);
-        i {
-          right: 10px;
-        }
-      }
-    }
   }
 
   .call-to-action-footer-label-container {
@@ -234,13 +234,66 @@
 }
 
 .dashboard-explanation-container {
-  height: 500px;
   width: 100%;
   background: $neutral-color;
   position: relative;
   top: 175px;
 
   .dashboard-explanation {
-    padding: 50px 10%;
+    padding: 5% 10%;
+    overflow: hidden;
+
+    img {
+      float: left;
+      margin-right: 10%;
+      width: 45%;
+      box-shadow: -10px 10px 0px 5px rgb(153, 153, 153);
+      @include media($mobile) {
+        width: 100%;
+        margin: 10% 0;
+        margin-bottom: 50px;
+      }
+    }
+
+    .text-container {
+      float: left;
+      width: 45%;
+      @include media($mobile) {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+      }
+
+      #lower-call {
+        margin:0;
+        margin-top:20px;
+        text-align: center;
+
+        @include media($mobile) {
+          margin: 0 auto;
+        }
+      }
+
+      .dashboard-explanation-header {
+        font-weight: 700;
+        font-size: 24px;
+        color: white;
+
+        @include media($tablet) {
+          font-size: 20px;
+        }
+
+      }
+
+      .dashboard-explanation-text {
+        font-weight: 300;
+        font-size: 18px;
+        color: lighten($neutral-color, 50%);
+
+        @include media($tablet) {
+          font-size: 14px;
+        }
+      }
+    }
   }
 }
