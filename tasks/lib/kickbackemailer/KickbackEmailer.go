@@ -3,7 +3,10 @@ package kickbackemailer
 import (
 	"code.google.com/p/goauth2/oauth"
 	"code.google.com/p/google-api-go-client/gmail/v1"
+	"encoding/base64"
+	"fmt"
 	"github.com/pfacheris/kickback/config"
+	"github.com/scorredoira/email"
 	// . "github.com/pfacheris/kickback/db"
 	"github.com/pfacheris/kickback/models"
 	"net/http"
@@ -61,7 +64,7 @@ type Headers struct {
 
 type Attachment struct{}
 
-func SendGmailEmailFromUser(user *models.User, purchases *[]models.Purchase) {
+func SendGmailEmailFromUser(user *models.User) {
 
 	oauthConfig := &oauth.Config{
 		ClientId:     config.CLIENT_ID,
@@ -90,6 +93,19 @@ func SendGmailEmailFromUser(user *models.User, purchases *[]models.Purchase) {
 		panic(err)
 	}
 
-	message := &gmail.Message{}
-	gmailService.Users.Messages.Send(user.Email, message)
+	// CREATE MESSAGE HERE
+	m := email.NewMessage("Requesting a refund due to price change", "Yo, bitch, I want my money back.")
+	m.From = user.Email
+	m.To = []string{config.AMAZON_CONTACT}
+
+	emailBytes := m.Bytes()
+
+	b64Raw := base64.StdEncoding.EncodeToString(emailBytes)
+
+	fmt.Println(b64Raw)
+
+	message := &gmail.Message{
+		Raw: string(b64Raw),
+	}
+	gmailService.Users.Messages.Send(user.Email, message).Do()
 }
