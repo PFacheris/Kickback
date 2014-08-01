@@ -48,9 +48,10 @@ func (controller HomeController) Dashboard(tokens oauth2.Tokens, r render.Render
 			HandleError("html", 500, err, r)
 			return
 		}
+
+		updatePurchaseForUser.Do(&user)
 	}
 	// User previously existed, render success page
-	updatePurchaseForUser.Do(&user)
 	r.HTML(200, "dashboard", nil)
 }
 
